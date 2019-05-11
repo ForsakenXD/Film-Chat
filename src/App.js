@@ -27,7 +27,7 @@ class App extends Component {
 
       this.performSearch = this.performSearch.bind(this)
       //this.searchChangeHandler = this.searchChangeHandler.bind(this)
-      this.performSearch("avengers")
+
 
   }
   performSearch(searchTerm){
@@ -57,6 +57,7 @@ searchChangeHandler(event){
   console.log(event.target.value)
   const boundObject = this
   const searchTerm = event.target.value
+  if(event.target.value != '')
   boundObject.performSearch(searchTerm)
 }
 
@@ -71,10 +72,22 @@ searchChangeHandler(event){
               <h1 className = "item">Movies DB Search</h1>
           </nav>
       </header>
-      <input className="searchBar" placeholder="Enter Search Term" onChange={this.searchChangeHandler.bind(this)}/>
-      {this.state.rows}
+      <div>
+
+        <div className="noir-background">
+
+
+        </div>
+        <img className="noir-collage "src = "collage.jpg" />
+      </div>
     </div>
   );
 }}
+
+
+//      <input className="searchBar" placeholder="Enter Search Term" onChange={this.searchChangeHandler.bind(this)}/>
+//       {this.state.rows}
+
+
 
 export default App;

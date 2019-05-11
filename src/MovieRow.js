@@ -4,7 +4,8 @@ class MovieRow extends React.Component {
 
     viewMovie(){
       const url = "https://www.themoviedb.org/movie/" + this.props.movie.id
-      window.location.href = url
+      const win = window.open(url,'_blank')
+      win.focus();
     }
 
     render(){

@@ -27,7 +27,7 @@
 
 /*Search-bar Styling END  */
 
-/*MOVIE STYLING */
+/*MOVIE STYLING  GRID*/
 .grid-container{
   display:grid;
   grid-template-columns:auto 1fr;
@@ -40,4 +40,39 @@
 
 .item-2{
 
+}
+/*Movie Styling GRID END */
+
+
+/*FILM NOIR HOME BACKGROUND STYLING  */
+.FILMCHAT-TEXT{
+  text-align: center;
+  color:white;
+  font-size:50px;
+}
+
+
+
+.noir-background{
+  background: url('over1.jpeg') no-repeat fixed;
+  width:100%;
+  height:700px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.noir-collage{
+  margin-top:100px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  height:250px;
+  max-width:100%;
+
+}
+
+body{
+  background-color: #292d33;
+  /* background-color: #20262d; */
 }
