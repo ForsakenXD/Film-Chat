@@ -24,13 +24,15 @@ class App extends Component {
 //     this.state = {
 //       rows:movieRows
 //     }
-      this.performSearch()
+
       this.performSearch = this.performSearch.bind(this)
+      //this.searchChangeHandler = this.searchChangeHandler.bind(this)
+      this.performSearch("avengers")
 
   }
-  performSearch(){
+  performSearch(searchTerm){
     console.log("PerformSearch using MOVIEDB")
-    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&query=avengers&page=1&include_adult=false"
+    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&page=1&include_adult=false&query=" + searchTerm
 
 
     fetch(urlString)
@@ -39,17 +41,24 @@ class App extends Component {
         let results = data.results
         var movieRows = []
         results.forEach((movie) => {
-          console.log(movie.title)
-          const movieRow = <MovieRow movie={movie} />
+          //console.log(movie)
+          const movieRow = <MovieRow key={movie.id} movie={movie} />
           movieRows.push(movieRow)
         })
 
         this.setState({rows:movieRows})
-      })
+      }.bind(this))
 
 
   }
 
+
+searchChangeHandler(event){
+  console.log(event.target.value)
+  const boundObject = this
+  const searchTerm = event.target.value
+  boundObject.performSearch(searchTerm)
+}
 
 
 
@@ -62,7 +71,7 @@ class App extends Component {
               <h1 className = "item">Movies DB Search</h1>
           </nav>
       </header>
-      <input className="searchBar" placeholder="Enter Search Term" />
+      <input className="searchBar" placeholder="Enter Search Term" onChange={this.searchChangeHandler.bind(this)}/>
       {this.state.rows}
     </div>
   );
