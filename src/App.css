@@ -55,6 +55,8 @@
 
 .noir-background{
   background: url('over1.jpeg') no-repeat fixed;
+  background-position: top;
+  filter: blur(5px);
   width:100%;
   height:700px;
   display:block;
@@ -68,6 +70,7 @@
   margin-left:auto;
   margin-right:auto;
   height:250px;
+
   max-width:100%;
 
 }

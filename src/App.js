@@ -1,6 +1,13 @@
 import React,{ Component } from 'react';
 import './App.css';
-import MovieRow from './MovieRow.js'
+import MovieRow from './Components/MovieRow.js'
+import Navigation_Bar from './Components/Header.js'
+import ReactBootstrap, {Jumbotron, Button, Col, Grid, Panel, FormGroup} from 'react-bootstrap'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+
+
+
 
 class App extends Component {
   constructor(){
@@ -45,11 +52,8 @@ class App extends Component {
           const movieRow = <MovieRow key={movie.id} movie={movie} />
           movieRows.push(movieRow)
         })
-
         this.setState({rows:movieRows})
       }.bind(this))
-
-
   }
 
 
@@ -57,8 +61,8 @@ searchChangeHandler(event){
   console.log(event.target.value)
   const boundObject = this
   const searchTerm = event.target.value
-  if(event.target.value != '')
-  boundObject.performSearch(searchTerm)
+  if(event.target.value !== '')
+    boundObject.performSearch(searchTerm)
 }
 
 
@@ -67,19 +71,15 @@ searchChangeHandler(event){
   return (
     <div >
       <header>
-          <nav id="navbar">
-              <img alt="film-chat icon" width="50" height="50" src="Media/Images/Film-icon.png"  />
-              <h1 className = "item">Movies DB Search</h1>
-          </nav>
+        <Navigation_Bar />
       </header>
       <div>
-
         <div className="noir-background">
-
-
-        </div>
+      </div>
         <img className="noir-collage "src = "collage.jpg" />
       </div>
+
+
     </div>
   );
 }}
