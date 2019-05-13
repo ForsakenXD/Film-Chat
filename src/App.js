@@ -2,9 +2,7 @@ import React,{ Component } from 'react';
 import './App.css';
 import MovieRow from './Components/MovieRow.js'
 import Navigation_Bar from './Components/Header.js'
-import ReactBootstrap, {Jumbotron, Button, Col, Grid, Panel, FormGroup} from 'react-bootstrap'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+
 
 
 
@@ -70,16 +68,15 @@ searchChangeHandler(event){
   render(){
   return (
     <div >
-      <header>
-        <Navigation_Bar />
-      </header>
+      <Navigation_Bar />
       <div>
-        <div className="noir-background">
-      </div>
+      <div className="noir-background"></div>
+        <div class="noir-background-text-border">
+          <h1 class="noir-background-text">FILMCHAT</h1>
+        </div>
+
         <img className="noir-collage "src = "collage.jpg" />
       </div>
-
-
     </div>
   );
 }}

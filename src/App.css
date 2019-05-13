@@ -2,9 +2,7 @@
 
 /*NAVBAR CUSTOMIZATION*/
 #navbar{
-  display:flex;
-  align-items:center;
-  background-color:black;
+  background-color:white;
   color:white;
   font-size:15px;
   padding-bottom: 5px;;
@@ -45,23 +43,42 @@
 
 
 /*FILM NOIR HOME BACKGROUND STYLING  */
-.FILMCHAT-TEXT{
-  text-align: center;
-  color:white;
-  font-size:50px;
-}
+
 
 
 
 .noir-background{
   background: url('over1.jpeg') no-repeat fixed;
+  background-size: cover;
   background-position: top;
   filter: blur(5px);
+  -webkit-filter: blur(5px);
   width:100%;
+  height:100%;
   height:700px;
   display:block;
   margin-left:auto;
   margin-right:auto;
+}
+
+
+.noir-background-text-border{
+
+  color: white;
+  font-weight: bold;
+  /* border: 3px solid #f1f1f1; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  z-index: 2px;
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+}
+
+.noir-background-text{
+  font-size:120px;
 }
 
 .noir-collage{
