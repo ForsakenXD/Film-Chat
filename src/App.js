@@ -1,8 +1,9 @@
 import React,{ Component } from 'react';
 import './App.css';
 import MovieRow from './Components/MovieRow.js'
-import Navigation_Bar from './Components/Header.js'
-import {ButtonToolbar, Button} from 'react-bootstrap'
+import NavigationBar from './Components/Header.js'
+import PopularMovies from './Components/popular-movies.js'
+import {Button} from 'react-bootstrap'
 
 
 
@@ -32,6 +33,9 @@ class App extends Component {
 //     }
 
       this.performSearch = this.performSearch.bind(this)
+      this.image = this.image.bind(this)
+      this.image()
+
       //this.searchChangeHandler = this.searchChangeHandler.bind(this)
 
 
@@ -65,22 +69,42 @@ searchChangeHandler(event){
 }
 
 
+// future image and title changing function //
+image(){
+  console.log('eyy bo')
+  const urlString = "https://api.themoviedb.org/3/list/111790?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
+  fetch(urlString)
+    .then(function(response) {return response.json(); })
+    .then(function(data){
+      const background_poster = []
+      data.items.forEach((movie) => {background_poster.push(movie.original_title)})
+      this.setState({background:background_poster[0]})
+      console.log(this.state.background)
+    }.bind(this))
+}
+// future image and title changing function //
+
+
 
   render(){
   return (
     <div >
-      <Navigation_Bar />
+      <NavigationBar />
       <div>
       <div className="noir-background"></div>
-        <div className="noir-background-text-border lg">
+        <div className="noir-background-text-border">
           <h1 className="noir-background-text-header">Filmchat</h1>
           <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
           <Button size="lg" id="button1">search for a specific movie</Button>
           <Button size="lg" id="button2">See all chatrooms</Button>
+          <p id="movie-title">{this.state.background + '(2003)'}</p>
+          <a href="#"><img src="arrow.png" alt="arrow" width="50" /></a>
       </div>
-      <p id="malakas">Lost in translation(2003)</p>
-
-
+      </div>
+      <div className="popular-movies">
+      <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
+        <h1 className="popular-movies-text">Popular Movies Today</h1>
+        <PopularMovies />
 
       </div>
     </div>

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'TiemposHeadlineWeb-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: url(TiemposHeadline-Bold.woff);
+}
+
+
 
 body{
   background-color: #292d33;
@@ -59,18 +67,14 @@ body{
 /*FILM NOIR HOME BACKGROUND STYLING  */
 
 .noir-background{
-
   background: url('lost.jpg') no-repeat fixed;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   filter: blur(8px);
   -webkit-filter: blur(8px);
   width:100%;
-  height:100%;
-  height:38.541666666666664vw;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
+  height:81.35444151275286vh;
+  position:relative;
 }
 
 
@@ -81,19 +85,24 @@ body{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, -50%);
   z-index: 2px;
-  width: 40%;
+  width: 100%;
   padding: 20px;
   text-align: center;
 }
 
 .noir-background-text-header{
-  font-size:7.5rem;
+  font-family: TiemposHeadlineWeb-Bold,sans-serif;
+
+  font-size:7.5vw;
 }
 
 .noir-background-text-paragraph{
-  font-size:1.375rem;
+  font-size:1.375vw;
+  width:60%;
+  margin-left: auto;
+  margin-right:auto;
 }
 
 #button1{
@@ -103,10 +112,14 @@ body{
 
 #button1,#button2{
   padding:1.563em;
-  width:50%;
+  width:40%;
   font-size:1.3625rem;
   font-weight: 600;
   border: 0px solid;
+  /*prevents the button text from breaking in two lines  */
+  white-space: nowrap;
+  overflow: hidden;
+  /*prevents the button text from breaking in two lines  */
 
 }
 
@@ -115,9 +128,10 @@ body{
   background-color: black;
 }
 
-#malakas{
-  color:lightgray;
+#movie-title{
+  color:gray;
   text-align: right;
+  font-size:0.7vw;
 }
 
 .noir-collage{
@@ -129,5 +143,102 @@ body{
   width:90%;
 
   max-width:100%;
+}
+
+/* popular movies section css */
+
+.popular-movies{
+  width:70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:6em;
+}
+
+.popular-movies-text{
+
+  color:#9ab;
+  font-weight: 600;
+  font-size:1rem;
+  border-bottom:2px solid rgb(153, 170, 187);
+
+}
+
+
+
+.headline1{
+  font-family: TiemposHeadlineWeb-Bold,sans-serif;
+  font-weight:400;
+  color:white;
+
+}
+
+.poster{
+  border-radius: 4%;
+  margin-right:0.1em;
+   height: auto;
+  margin-bottom:0.1em;
+}
+
+
+
+
+
+
+/*MEDIA QUERIES  */
+
+
+/* Extra small devices (phones, 600px and down) */
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+
+@media only screen and (max-width: 1200px) {
+  .noir-background-text-paragraph{
+    font-size:1.5rem;
+    width:90%;
+  }
+
+}
+
+@media only screen and (max-width: 992px) {
+
+
+
+}
+
+
+
+
+@media only screen and (max-width: 768px ) {
+  .noir-background-text-paragraph{
+    font-size:1.5rem;
+    width:100%;
+  }
+  #button1,#button2{
+    width:50%;
+    font-size:0.7rem;
+  }
+
+
+
+}
+
+@media only screen and (max-width: 600px) {
+  .noir-background-text-header{
+    font-size:3rem;
+  }
+  .noir-background-text-paragraph{
+    font-size:0.6rem;
+    width:100%;
+  }
+
+  #navbar{
+    margin-bottom:40px;
+  }
+  #button1,#button2{
+    width:50%;
+    font-size:9px;
+  }
 
 }
