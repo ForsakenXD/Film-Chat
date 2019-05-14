@@ -8,11 +8,10 @@ body{
 #navbar{
   background-color:transparent;
   color:white;
-  font-size:15px;
-  padding:25px;
-  padding-bottom: 5px;
-
-  margin-bottom:30px;
+  font-size:0.9375rem;
+  padding:1.563em;
+  padding-bottom: 0.313em;
+  margin-bottom:0.938em;
 }
 
 .nav-search{
@@ -35,12 +34,12 @@ body{
 /*Search-bar Styling*/
 
 .searchBar{
-  font-size:24px;
+  font-size:1.5rem;
   display:block;
   width:100%;
-  padding-top: 8px;
-  padding-bottom:8px;
-  padding-left:16px;
+  padding-top: 0.500em;
+  padding-bottom:0.500em;
+  padding-left:1em;
 }
 
 /*Search-bar Styling END  */
@@ -68,7 +67,7 @@ body{
   -webkit-filter: blur(8px);
   width:100%;
   height:100%;
-  height:700px;
+  height:38.541666666666664vw;
   display:block;
   margin-left:auto;
   margin-right:auto;
@@ -90,11 +89,11 @@ body{
 }
 
 .noir-background-text-header{
-  font-size:120px;
+  font-size:7.5rem;
 }
 
 .noir-background-text-paragraph{
-  font-size:22px;
+  font-size:1.375rem;
 }
 
 #button1{
@@ -103,9 +102,9 @@ body{
 }
 
 #button1,#button2{
-  padding:25px;
+  padding:1.563em;
   width:50%;
-  font-size:25px;
+  font-size:1.3625rem;
   font-weight: 600;
   border: 0px solid;
 
@@ -122,7 +121,7 @@ body{
 }
 
 .noir-collage{
-  margin-top:100px;
+  margin-top:6.250em;
   display:block;
   margin-left:auto;
   margin-right:auto;
