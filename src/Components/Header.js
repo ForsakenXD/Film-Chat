@@ -4,8 +4,8 @@ import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstr
 function Navigation_Bar(){
   return(
     <div>
-    <Navbar bg="" expand="lg"  id="navbar">
-      <Navbar.Brand href="#home">Film-Chat</Navbar.Brand>
+    <Navbar bg="" expand="lg"  id="navbar" className="lg" >
+      <Navbar.Brand href="#home" >Film-Chat</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">

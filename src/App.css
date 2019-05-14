@@ -1,16 +1,29 @@
 
+body{
+  background-color: #292d33;
+}
+
 
 /*NAVBAR CUSTOMIZATION*/
 #navbar{
-  background-color:white;
+  background-color:transparent;
   color:white;
   font-size:15px;
-  padding-bottom: 5px;;
+  padding:25px;
+  padding-bottom: 5px;
+  border-bottom: 5px solid #292d33;
 }
+
+#navbar a{
+  color:darkgray;
+  font-weight: bold;
+}
+
 .item{
   margin-left:15px;
 }
 /*NAVBAR CUSTOMIZATION END*/
+
 
 /*Search-bar Styling*/
 
@@ -31,28 +44,21 @@
   grid-template-columns:auto 1fr;
   margin-bottom: 25px;
   align-items: center;
-
-
-
 }
 
-.item-2{
 
-}
 /*Movie Styling GRID END */
 
 
 /*FILM NOIR HOME BACKGROUND STYLING  */
 
-
-
-
 .noir-background{
+
   background: url('over1.jpeg') no-repeat fixed;
   background-size: cover;
-  background-position: top;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
+  background-position: center;
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
   width:100%;
   height:100%;
   height:700px;
@@ -63,22 +69,43 @@
 
 
 .noir-background-text-border{
-
   color: white;
   font-weight: bold;
   /* border: 3px solid #f1f1f1; */
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -80%);
   z-index: 2px;
   width: 40%;
   padding: 20px;
   text-align: center;
 }
 
-.noir-background-text{
+.noir-background-text-header{
   font-size:120px;
+}
+
+.noir-background-text-paragraph{
+  font-size:22px;
+}
+
+#button1{
+  background-color: #434b56;
+  color:black;
+}
+
+#button1,#button2{
+  padding:25px;
+  width:50%;
+  font-size:25px;
+  border: 0px solid;
+
+}
+
+#button2{
+  border-left:1px solid white;
+  background-color: black;
 }
 
 .noir-collage{
@@ -87,12 +114,8 @@
   margin-left:auto;
   margin-right:auto;
   height:250px;
+  width:90%;
 
   max-width:100%;
 
-}
-
-body{
-  background-color: #292d33;
-  /* background-color: #20262d; */
 }

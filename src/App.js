@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import './App.css';
 import MovieRow from './Components/MovieRow.js'
 import Navigation_Bar from './Components/Header.js'
+import {ButtonToolbar, Button} from 'react-bootstrap'
 
 
 
@@ -71,9 +72,12 @@ searchChangeHandler(event){
       <Navigation_Bar />
       <div>
       <div className="noir-background"></div>
-        <div class="noir-background-text-border">
-          <h1 class="noir-background-text">FILMCHAT</h1>
-        </div>
+        <div className="noir-background-text-border lg">
+          <h1 className="noir-background-text-header">FILMCHAT</h1>
+          <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
+          <Button size="lg" id="button1">search for a specific movie</Button>
+          <Button size="lg" id="button2">See all chatrooms</Button>
+      </div>
 
         <img className="noir-collage "src = "collage.jpg" />
       </div>
