@@ -73,11 +73,14 @@ searchChangeHandler(event){
       <div>
       <div className="noir-background"></div>
         <div className="noir-background-text-border lg">
-          <h1 className="noir-background-text-header">FILMCHAT</h1>
+          <h1 className="noir-background-text-header">Filmchat</h1>
           <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
           <Button size="lg" id="button1">search for a specific movie</Button>
           <Button size="lg" id="button2">See all chatrooms</Button>
+
       </div>
+      <p id="malakas">Lost in translation(2003)</p>
+
 
         <img className="noir-collage "src = "collage.jpg" />
       </div>

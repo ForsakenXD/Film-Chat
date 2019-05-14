@@ -5,7 +5,7 @@ function Navigation_Bar(){
   return(
     <div>
     <Navbar bg="" expand="lg"  id="navbar" className="lg" >
-      <Navbar.Brand href="#home" >Film-Chat</Navbar.Brand>
+      <img href="#home" alt="logo" src="logo.png"></img>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
@@ -21,7 +21,7 @@ function Navigation_Bar(){
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search for a movie</Button>
+      <Button variant="" className="nav-search">Search for a movie</Button>
     </Form>
   </Navbar.Collapse>
 </Navbar>
