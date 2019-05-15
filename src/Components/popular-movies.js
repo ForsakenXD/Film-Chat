@@ -22,10 +22,10 @@ class PopularMovies extends React.Component{
         data.results.forEach((movie) => {
           if(counter<=10)
           {
-          let url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
-          const mov = <img alt={(movie.original_title)} src={url2}   key={(movie.original_title)} className="poster"/>
-          background_poster.push(mov)
-          counter++
+            let url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
+            const mov = <img alt={(movie.original_title)} src={url2}   key={(movie.original_title)} className="poster"/>
+            background_poster.push(mov)
+            counter++
           }
         })
         this.setState({PopularRow:background_poster})
