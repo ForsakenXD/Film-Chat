@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import './App.css';
+import './imagehover.min.css'
 import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'

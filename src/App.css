@@ -177,6 +177,17 @@ body{
   margin-right:0.1em;
    height: auto;
   margin-bottom:0.1em;
+
+    transition: transform .2s; /* Animation */
+}
+
+
+
+.imghvr-blur:hover>img{
+  filter: blur(3px)!important;
+transform: scale(1.2)!important;
+opacity: 1!important;
+
 }
 
 .box {

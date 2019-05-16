@@ -1,9 +1,15 @@
 import React from 'react'
-import posed from 'react-pose';
 
 
 
 
+
+
+const gradient = {
+  //background:'linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(249,249,255,0) 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 77%, rgba(51,255,222,0.3) 94%)'
+  background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(51,255,222,0.3) 100%)'
+  //background: 'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)'
+}
 
 class PopularMovies extends React.Component{
   constructor(){
@@ -11,7 +17,11 @@ class PopularMovies extends React.Component{
     this.state={}
 
     this.show()
+
   }
+
+
+
 
   show(){
     console.log('eyy bo')
@@ -25,19 +35,22 @@ class PopularMovies extends React.Component{
         data.results.forEach((movie) => {
           if(counter<=10)
           {
+            console.log(movie)
             let url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
-            const mov = <img alt={(movie.original_title)} src={url2}   key={(movie.original_title)} className="poster"/>
+            const mov = <figure class="imghvr-blur" style={{backgroundColor: 'transparent'}}>
+                            <img alt={(movie.original_title)} src={url2}   key={(movie.original_title)} className="poster"/>
+                            <figcaption style={{backgroundColor:"transparent"},gradient}>
+                              <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
+
+
+                            </figcaption>
+                            <a href="#"></a>
+                        </figure>
             background_poster.push(mov)
             counter++
           }
         })
         this.setState({PopularRow:background_poster})
-
-        console.log(this.state.PopularRow)
-
-        // data.items.forEach((movie) => {background_poster.push(movie.original_title)})
-        // this.setState({background:background_poster[0]})
-        // console.log(this.state.background)
       }.bind(this))
   }
 
