@@ -1,4 +1,8 @@
 import React from 'react'
+import posed from 'react-pose';
+
+
+
 
 
 class PopularMovies extends React.Component{
@@ -7,7 +11,6 @@ class PopularMovies extends React.Component{
     this.state={}
 
     this.show()
-
   }
 
   show(){

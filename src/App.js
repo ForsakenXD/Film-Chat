@@ -4,42 +4,45 @@ import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import {Button} from 'react-bootstrap'
+import posed from 'react-pose';
 
 
 
+//  ANIMATION CONSTANTS
+const Sidebar = posed.ul({
+  open: {
+    x: '0%',
+    delayChildren: 200,
+    staggerChildren: 150
+  },
+  closed: { x: '-100%', delay: 300 }
+});
+
+const Item = posed.li({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 20, opacity: 0 }
+});
+
+//  ANIMATION CONSTANTS
 
 
 class App extends Component {
   constructor(){
     super()
-    this.state = {}
-    // console.log("This is my initializer")
-
-//     const movies = [
-//       {id: 0,poster_src:"https://image.tmdb.org/t/p/w600_and_h900_bestv2/or06FN3Dka5tukK1e9sl16pB3iy.jpg",title:"Avengers:The endgame",overview:"The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe."},
-//       {id: 1,poster_src:"https://image.tmdb.org/t/p/w600_and_h900_bestv2/cezWGskPY5x7GaglTTRN4Fugfb8.jpg",title:"Avengers",overview:"This is my second overview"},
-//
-// ]
-//
-//     let movieRows = []
-//     movies.forEach((movie) => {
-//       console.log(movie.title)
-//       let movieRow = <MovieRow movie={movie}/>
-//       movieRows.push(movieRow)
-//     })
-//
-//     this.state = {
-//       rows:movieRows
-//     }
-
-      this.performSearch = this.performSearch.bind(this)
-      this.image = this.image.bind(this)
-      this.image()
-
-      //this.searchChangeHandler = this.searchChangeHandler.bind(this)
-
-
+    this.state = {isOpen: false}
+    this.performSearch = this.performSearch.bind(this)
+    this.image = this.image.bind(this)
+    this.image()
   }
+  // BUTTONS ANIMATION
+  componentDidMount() {
+      setTimeout(this.toggle, 350);
+    }
+
+  toggle = () => this.setState({ isOpen: !this.state.isOpen });
+  //BUTTONS ANIMATION
+
+
   performSearch(searchTerm){
     console.log("PerformSearch using MOVIEDB")
     const urlString = "https://api.themoviedb.org/3/search/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&page=1&include_adult=false&query=" + searchTerm
@@ -78,7 +81,7 @@ image(){
     .then(function(data){
       const background_poster = []
       data.items.forEach((movie) => {background_poster.push(movie.original_title)})
-      this.setState({background:background_poster[0]})
+      this.setState({background:background_poster[1]})
       console.log(this.state.background)
     }.bind(this))
 }
@@ -87,19 +90,24 @@ image(){
 
 
   render(){
+    const { isOpen } = this.state;
   return (
     <div >
       <NavigationBar />
       <div>
       <div className="noir-background"></div>
+
         <div className="noir-background-text-border">
-          <h1 className="noir-background-text-header">Filmchat</h1>
-          <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
-          <Button size="lg" id="button1">search for a specific movie</Button>
-          <Button size="lg" id="button2">See all chatrooms</Button>
+          <Sidebar className="sidebar" pose={isOpen ? 'open' : 'closed'}>
+            <h1 className="noir-background-text-header">Filmchat</h1>
+            <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
+            <Button size="lg" id="button1">search for a specific movie</Button>
+            <Button size="lg" id="button2">See all chatrooms</Button>
+          </Sidebar >
           <p id="movie-title">{this.state.background + '(2003)'}</p>
           <a href="#"><img src="arrow.png" alt="arrow" width="50" /></a>
-      </div>
+        </div>
+
       </div>
       <div className="popular-movies">
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
