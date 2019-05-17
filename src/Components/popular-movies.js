@@ -60,7 +60,10 @@ class PopularMovies extends React.Component{
 
   render(){
     return(
-      <div>{this.state.PopularRow}</div>
+      <div>
+        <h1 className="popular-movies-text">Popular Movies Today</h1>
+        {this.state.PopularRow}
+    </div>
     )
   }
 

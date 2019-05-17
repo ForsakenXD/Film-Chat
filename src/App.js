@@ -4,6 +4,7 @@ import './imagehover.min.css'
 import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
+import RandomGenre from './Components/random-genre.js'
 import {Button} from 'react-bootstrap'
 import posed from 'react-pose';
 
@@ -112,8 +113,9 @@ image(){
       </div>
       <div className="popular-movies">
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
-        <h1 className="popular-movies-text">Popular Movies Today</h1>
         <PopularMovies />
+        <RandomGenre />
+
 
       </div>
     </div>
