@@ -25,11 +25,9 @@ class PopularMovies extends React.Component{
     fetch(urlString)
       .then(function(response) {return response.json(); })
       .then(function(data){
-        console.log(data)
         const background_poster = []
         let counter = 1
         data.results.forEach((movie) => {
-          console.log(movie)
           if(counter<=12) //(how many movies will be show on the popular movies list)
           {
             const url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path

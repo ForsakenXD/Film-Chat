@@ -61,6 +61,7 @@ class App extends Component {
           movieRows.push(movieRow)
         })
         this.setState({rows:movieRows})
+        console.log(this.state.rows)
       }.bind(this))
   }
 
@@ -76,7 +77,6 @@ searchChangeHandler(event){
 
 // future image and title changing function //
 image(){
-  console.log('eyy bo')
   const urlString = "https://api.themoviedb.org/3/list/111790?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
   fetch(urlString)
     .then(function(response) {return response.json(); })
@@ -84,7 +84,6 @@ image(){
       const background_poster = []
       data.items.forEach((movie) => {background_poster.push(movie.original_title)})
       this.setState({background:background_poster[1]})
-      console.log(this.state.background)
     }.bind(this))
 }
 // future image and title changing function //
@@ -115,8 +114,8 @@ image(){
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
         <PopularMovies />
         <RandomGenre />
-
-
+        <input className="searchBar" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
+            {this.state.rows}
       </div>
     </div>
   );

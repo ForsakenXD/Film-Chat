@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap'
 
 const gradient = {
   //background:'linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(249,249,255,0) 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 77%, rgba(51,255,222,0.3) 94%)'
-  background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(51,255,222,0.3) 100%)'
+  background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)'
   //background: 'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)'
 }
 
@@ -30,13 +30,11 @@ class RandomGenre extends React.Component{
           const name = <span>{rand_gen.name}</span>
           const movie_id = rand_gen.id
           this.setState(({genre:name,id:movie_id}))
-          console.log('before: ' +this.state.id)
-                this.genre_movies()
+          this.genre_movies()
         }.bind(this))
     }
 
     genre_movies(){
-      console.log('after: '+ this.state.id)
       const genre_url = "https://api.themoviedb.org/3/discover/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + this.state.id
       fetch(genre_url)
         .then(function(response) {return response.json(); })
@@ -44,7 +42,7 @@ class RandomGenre extends React.Component{
                 const background_poster = []
                 let counter=1;
           data.results.forEach((movie) => {
-            if(counter<=12)
+            if(counter<=6)
             {
             const url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
             const url1 = "https://www.themoviedb.org/movie/" + movie.id
@@ -77,7 +75,7 @@ class RandomGenre extends React.Component{
 
       return(
 
-        <div style={{marginTop:'3em'}}>
+        <div style={{marginTop:'3em',marginBottom:'8em'}}>
           <h1 className="popular-movies-text">Genre of the day:{this.state.genre}</h1>
           {this.state.PopularRow}
         </div>
