@@ -6,6 +6,7 @@ import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
 import {Button} from 'react-bootstrap'
+import { Link, animateScroll as scroll } from "react-scroll";
 import posed from 'react-pose';
 
 
@@ -57,8 +58,11 @@ class App extends Component {
         var movieRows = []
         results.forEach((movie) => {
           //console.log(movie)
-          const movieRow = <MovieRow key={movie.id} movie={movie} />
-          movieRows.push(movieRow)
+          if(movie.poster_path !== null)
+          {
+            const movieRow = <MovieRow key={movie.id} movie={movie} />
+            movieRows.push(movieRow)
+          }
         })
         this.setState({rows:movieRows})
         console.log(this.state.rows)
@@ -102,11 +106,21 @@ image(){
           <Sidebar className="sidebar" pose={isOpen ? 'open' : 'closed'}>
             <h1 className="noir-background-text-header">Filmchat</h1>
             <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
-            <Button size="lg" id="button1">search for a specific movie</Button>
+
+              <Link
+                  activeClass="active"
+                  to="section1"
+                  spy={true}
+                  smooth={true}
+                  offset={-70}
+                  duration={1500}
+                  >
+                <Button size="lg" id="button1">search for a specific movie</Button>
+                </Link>
             <Button size="lg" id="button2">See all chatrooms</Button>
           </Sidebar >
           <p id="movie-title">{this.state.background + '(2003)'}</p>
-          <a href="#"><img src="arrow.png" alt="arrow" width="50" /></a>
+          <img src="arrow.png" alt="arrow" width="50" />
         </div>
 
       </div>
@@ -114,8 +128,11 @@ image(){
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
         <PopularMovies />
         <RandomGenre />
-        <input className="searchBar" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
+        <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
+        <div className="search-background search__container" id="section1">
+          <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
             {this.state.rows}
+        </div>
       </div>
     </div>
   );
