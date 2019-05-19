@@ -5,6 +5,7 @@ import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
+import Chat from './chat-section/src/App.js'
 import {Button} from 'react-bootstrap'
 import { Link, animateScroll as scroll } from "react-scroll";
 import posed from 'react-pose';
@@ -21,10 +22,7 @@ const Sidebar = posed.ul({
   closed: { x: '-100%', delay: 300 }
 });
 
-const Item = posed.li({
-  open: { y: 0, opacity: 1 },
-  closed: { y: 20, opacity: 0 }
-});
+
 
 //  ANIMATION CONSTANTS
 
@@ -36,6 +34,7 @@ class App extends Component {
     this.performSearch = this.performSearch.bind(this)
     this.image = this.image.bind(this)
     this.image()
+    this.performSearch("John Wick")
   }
   // BUTTONS ANIMATION
   componentDidMount() {
@@ -87,7 +86,7 @@ image(){
     .then(function(data){
       const background_poster = []
       data.items.forEach((movie) => {background_poster.push(movie.original_title)})
-      this.setState({background:background_poster[1]})
+      this.setState({background:background_poster[0]})
     }.bind(this))
 }
 // future image and title changing function //
@@ -134,6 +133,7 @@ image(){
             {this.state.rows}
         </div>
       </div>
+      <div id="igor"></div>
     </div>
   );
 }}

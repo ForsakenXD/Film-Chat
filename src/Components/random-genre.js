@@ -76,7 +76,7 @@ class RandomGenre extends React.Component{
       return(
 
         <div style={{marginTop:'3em',marginBottom:'8em'}}>
-          <h1 className="popular-movies-text">Genre of the day:{this.state.genre}</h1>
+          <h1 className="popular-movies-text">Random genre we think you should explore:{this.state.genre}</h1>
           {this.state.PopularRow}
         </div>
       )
