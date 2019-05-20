@@ -5,11 +5,13 @@ import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
-import Chat from './chat-section/src/App.js'
+import ChatApp from './chat/chat-App.js'
 import {Button} from 'react-bootstrap'
 import { Link, animateScroll as scroll } from "react-scroll";
-import posed from 'react-pose';
+import posed, { PoseGroup } from 'react-pose';
+import Rodal from 'rodal';
 
+import 'rodal/lib/rodal.css';
 
 
 //  ANIMATION CONSTANTS
@@ -21,16 +23,16 @@ const Sidebar = posed.ul({
   },
   closed: { x: '-100%', delay: 300 }
 });
+// enter exit transition constants//
 
-
-
+// enter exit transition constants//
 //  ANIMATION CONSTANTS
 
 
 class App extends Component {
   constructor(){
     super()
-    this.state = {isOpen: false}
+    this.state = {isOpen: false,visible:false}
     this.performSearch = this.performSearch.bind(this)
     this.image = this.image.bind(this)
     this.image()
@@ -39,11 +41,25 @@ class App extends Component {
   // BUTTONS ANIMATION
   componentDidMount() {
       setTimeout(this.toggle, 350);
+
     }
+
+
+
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
   //BUTTONS ANIMATION
+  show() {
 
+     this.setState({ visible: true });
+
+
+ }
+
+ hide() {
+
+     this.setState({ visible: false });
+ }
 
   performSearch(searchTerm){
     console.log("PerformSearch using MOVIEDB")
@@ -59,7 +75,7 @@ class App extends Component {
           //console.log(movie)
           if(movie.poster_path !== null)
           {
-            const movieRow = <MovieRow key={movie.id} movie={movie} />
+            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.show} visible={this.state.visible}/>
             movieRows.push(movieRow)
           }
         })
@@ -114,9 +130,9 @@ image(){
                   offset={-70}
                   duration={1500}
                   >
-                <Button size="lg" id="button1">search for a specific movie</Button>
+                <Button size="lg" id="button1" >search for a specific movie</Button>
                 </Link>
-            <Button size="lg" id="button2">See all chatrooms</Button>
+            <Button size="lg" id="button2" onClick={this.show.bind(this)}>See all chatrooms</Button>
           </Sidebar >
           <p id="movie-title">{this.state.background + '(2003)'}</p>
           <img src="arrow.png" alt="arrow" width="50" />
@@ -133,7 +149,11 @@ image(){
             {this.state.rows}
         </div>
       </div>
-      <div id="igor"></div>
+
+
+                 <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
+                     <ChatApp />
+                 </Rodal>
     </div>
   );
 }}

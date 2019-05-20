@@ -304,15 +304,212 @@ opacity: 1!important;
 }
 
 /*  */
+/*CHAT POPUP CSS  */
+/* .modal{
+
+}
+
+.mask{
+  position:absolute;
+  background:rgba(0,0,0,0.6)
+}
+.modal-fade-enter{
+  animation:modal-fade-enter both ease-in
+}
+
+.modal-zoom-enter{
+  animation:modal-zoom-enter both cubic-bezier(0.4, 0, 0, 1.5)
+}
+
+
+.modal,.mask{
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:100;
+} */
+
+/*CHAT STYLING  */
+.app {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 60px;
+    grid-template-areas:
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "n f f f f f";
+}
+
+.new-room-form {
+    grid-area: n;
+}
+
+.rooms-list {
+    grid-area: r;
+}
+
+.message-list {
+    grid-area: m;
+}
+
+.send-message-form {
+    grid-area: f;
+}
+
+/* REST OF CSS */
+.rooms-list {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: white;
+    overflow: scroll;
+    height: 100%;
+}
+
+.rooms-list > ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: scoll;
+}
+
+.rooms-list li {
+    margin: 10px 0;
+}
+
+.rooms-list > h3 {
+    margin: 5px 0;
+    color: white;
+}
+
+.rooms-list .room a {
+    color: crimson;
+    font-weight: 600;
+    text-decoration: none;
+
+ }
+
+.rooms-list .room.active a {
+    color: black;
+}
+
+.new-room-form {
+    padding: 0 5px;
+    background: white;
+    color: black;
+}
+
+.new-room-form form {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-room-form input {
+    width: 135px;
+    background: var(--secondary-color);
+}
+
+.new-room-form button {
+    background: var(--secondary-color);
+    color: var(--main-text-color);
+    border: 0;
+}
+
+.new-room-form input::placeholder {
+    color: var(--main-text-color);
+    font-weight: 200;
+}
+
+.new-room-form input:focus {
+    outline-width: 0;
+}
+
+.new-room-form input {
+    border: 0;
+}
+
+.new-room-form button {
+    border: 0;
+}
+
+.message {
+    margin: 15px 0;
+}
+
+.message .message-username {
+    font-size: 1rem;
+    color: crimson;
+    opacity: 0.9;
+    margin-bottom: 6px;
+}
+.message .message-text {
+    background: var(--main-color);
+    color: var(--secondary-color);
+    display: inline;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.message-list {
+    box-sizing: border-box;
+    padding-left: 6px;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    background: var(--secondary-color);
+}
+
+.message-list .join-room {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 34px;
+    font-weight: 300;
+}
+
+.send-message-form {
+    background: var(--send-message-form);
+    display: flex;
+}
+
+.send-message-form input {
+    width: 100%;
+    padding: 15px 10px;
+    margin: 0;
+    border-style: none;
+    background: var(--send-message-form);
+    font-weight: 200;
+
+}
+
+.send-message-form input:focus {
+    outline-width: 0;
+}
+
+.send-message-form input::placeholder {
+    color: var(--main-text-color);
+}
+
+.help-text {
+    position: absolute;
+    top: 10px;
+}
+
+/*CHAT STYLING END  */
+
+/*  */
 
 
 /*MEDIA QUERIES  */
 
 
-/* Extra small devices (phones, 600px and down) */
 
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
 
 
 @media only screen and (max-width: 1200px) {

@@ -9,7 +9,10 @@ class MovieRow extends React.Component {
       win.focus();
     }
 
+
     render(){
+      console.log('xd')
+      console.log(this.props)
       return(
           <div style={{borderBottom:'2px solid #2c3440',marginTop:'2em'}}>
           <div className="grid-container" key={this.props.movie.id} >
@@ -18,10 +21,13 @@ class MovieRow extends React.Component {
               <h4 className="item">{this.props.movie.title}</h4>
               <p className="item">{this.props.movie.overview}</p>
               <Button variant="light" onClick={this.viewMovie.bind(this)} className="button-search1"><span>View</span></Button>
-              <Button variant="danger" onClick={this.viewMovie.bind(this)} className="button-search2"><span>Chat with a random fan about this movie!</span></Button>
+              <Button variant="danger" onClick={this.props.show} className="button-search2"><span>Chat with a random fan about this movie!</span></Button>
             </div>
+
+
           </div>
           </div>
+
           )
 
 
