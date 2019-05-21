@@ -6,7 +6,7 @@ import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
 import ChatApp from './chat/chat-App.js'
-import {Button} from 'react-bootstrap'
+import {Button,Form} from 'react-bootstrap'
 import { Link, animateScroll as scroll } from "react-scroll";
 import posed, { PoseGroup } from 'react-pose';
 import Rodal from 'rodal';
@@ -65,7 +65,7 @@ room = (roomName) => {this.setState({roomName})}
 
  hide() {
 
-     this.setState({ visible: false });
+     this.setState({ visible: false});
  }
 
 
@@ -158,8 +158,11 @@ image(){
 
 
                  <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
-                     <ChatApp roomName={this.state.roomName}/>
+                     <ChatApp roomName={this.state.roomName} id={'nikos'}/>
                  </Rodal>
+
+
+
     </div>
   );
 }}

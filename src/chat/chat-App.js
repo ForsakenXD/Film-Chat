@@ -1,5 +1,6 @@
 import React from 'react'
 import Chatkit from '@pusher/chatkit-client'
+
 import MessageList from './components/MessageList'
 import SendMessageForm from './components/SendMessageForm'
 import RoomList from './components/RoomList'
@@ -135,6 +136,7 @@ class ChatApp extends React.Component {
                 disabled={!this.state.roomId}
                 sendMessage={this.sendMessage} />
                 <NewRoomForm createRoom={this.createRoom}/>
+
             </div>
         );
     }
