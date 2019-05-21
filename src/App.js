@@ -33,6 +33,7 @@ class App extends Component {
   constructor(){
     super()
     this.state = {isOpen: false,visible:false}
+    this.updateText1 = this.updateText1
     this.performSearch = this.performSearch.bind(this)
     this.image = this.image.bind(this)
     this.image()
@@ -43,12 +44,18 @@ class App extends Component {
       setTimeout(this.toggle, 350);
 
     }
-
+room = (roomName) => {this.setState({roomName})}
 
 
 
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
   //BUTTONS ANIMATION
+
+
+  updateText1 = (visible) => {this.setState({ visible })}
+
+
+
   show() {
 
      this.setState({ visible: true });
@@ -61,8 +68,9 @@ class App extends Component {
      this.setState({ visible: false });
  }
 
+
+
   performSearch(searchTerm){
-    console.log("PerformSearch using MOVIEDB")
     const urlString = "https://api.themoviedb.org/3/search/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&page=1&include_adult=false&query=" + searchTerm
 
 
@@ -75,18 +83,16 @@ class App extends Component {
           //console.log(movie)
           if(movie.poster_path !== null)
           {
-            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.show} visible={this.state.visible}/>
+            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room}/>
             movieRows.push(movieRow)
           }
         })
         this.setState({rows:movieRows})
-        console.log(this.state.rows)
       }.bind(this))
   }
 
 
 searchChangeHandler(event){
-  console.log(event.target.value)
   const boundObject = this
   const searchTerm = event.target.value
   if(event.target.value !== '')
@@ -141,8 +147,8 @@ image(){
       </div>
       <div className="popular-movies">
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
-        <PopularMovies />
-        <RandomGenre />
+        <PopularMovies show={this.updateText1}  roomName={this.room}/>
+        <RandomGenre show={this.updateText1} roomName={this.room}/>
         <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
         <div className="search-background search__container" id="section1">
           <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
@@ -152,7 +158,7 @@ image(){
 
 
                  <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
-                     <ChatApp />
+                     <ChatApp roomName={this.state.roomName}/>
                  </Rodal>
     </div>
   );

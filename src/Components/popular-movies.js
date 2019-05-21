@@ -17,7 +17,13 @@ class PopularMovies extends React.Component{
     this.show()
   }
 
+  chat(name){
+    this.props.show(true)
+    this.props.roomName(name)
 
+
+
+  }
 
 
   show(){
@@ -28,7 +34,7 @@ class PopularMovies extends React.Component{
         const background_poster = []
         let counter = 1
         data.results.forEach((movie) => {
-          if(counter<=12) //(how many movies will be show on the popular movies list)
+          if(counter<=14) //(how many movies will be show on the popular movies list)
           {
             const url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
             const url1 = "https://www.themoviedb.org/movie/" + movie.id
@@ -38,7 +44,7 @@ class PopularMovies extends React.Component{
                               <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
                                   <div className="d-flex flex-row" >
                                   <Button onClick={()=> window.open(url1, "_blank")} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
-                                  <Button variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
+                                  <Button onClick={() =>  this.chat(movie.original_title)} variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
                                   </div>
                                   <h6>Release Date:{movie.release_date}</h6>
                                   <h6>Rating:{movie.vote_average}/10</h6>

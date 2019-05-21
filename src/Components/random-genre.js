@@ -19,6 +19,13 @@ class RandomGenre extends React.Component{
       this.random_genre()
 
     }
+    chat(name){
+        this.props.show(true)
+        this.props.roomName(name)
+
+
+
+      }
 
     random_genre(){
       const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
@@ -42,7 +49,7 @@ class RandomGenre extends React.Component{
                 const background_poster = []
                 let counter=1;
           data.results.forEach((movie) => {
-            if(counter<=6)
+            if(counter<=7)
             {
             const url2 = "https://image.tmdb.org/t/p/w200/" + movie.poster_path
             const url1 = "https://www.themoviedb.org/movie/" + movie.id
@@ -52,7 +59,7 @@ class RandomGenre extends React.Component{
                               <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
                                   <div className="d-flex flex-row" >
                                   <Button onClick={()=> window.open(url1, "_blank")} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
-                                  <Button variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
+                                  <Button onClick={() =>  this.chat(movie.original_title)}variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
                                   </div>
                                   <h6>Release Date:{movie.release_date}</h6>
                                   <h6>Rating:{movie.vote_average}/10</h6>

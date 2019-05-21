@@ -22,7 +22,6 @@ class ChatApp extends React.Component {
         this.subscribeToRoom = this.subscribeToRoom.bind(this)
         this.getRooms = this.getRooms.bind(this)
         this.createRoom = this.createRoom.bind(this)
-
     }
 
     componentDidMount() {
@@ -32,6 +31,7 @@ class ChatApp extends React.Component {
             tokenProvider: new Chatkit.TokenProvider({
                 url: tokenUrl
             })
+
         })
 
         chatManager.connect()
@@ -41,6 +41,20 @@ class ChatApp extends React.Component {
         })
         .catch(err => console.log('error on connecting: ', err))
     }
+    // when a user clikcs to chat for a certain movie this component lifecycle method gets called
+    componentWillReceiveProps(nextProps){
+      if(nextProps.roomName!==this.props.roomName){
+          this.createRoom(nextProps.roomName)
+      }
+    }
+
+
+
+
+
+
+
+
 
     getRooms() {
         this.currentUser.getJoinableRooms()
@@ -85,15 +99,29 @@ class ChatApp extends React.Component {
     }
 
     createRoom(name){
-          this.currentUser.createRoom({
-            name
+            let index = false
+            let id = ''
+            this.state.joinedRooms.forEach((movie) => {
+            if(name == movie.name)
+              {
+              index = true
+              id = movie.id
+              }
           })
-          .then(room => this.subscribeToRoom(room.id))
-          .catch(err => console.log('error with create room'))
+          if(!index)  //ensures there isn't a chatroom for the same movie
+            this.currentUser.createRoom({
+              name
+            })
+            .then(room => this.subscribeToRoom(room.id))
+            .catch(err => console.log('error with create room'))
+          else      //if there is just join it
+              (room => this.subscribeToRoom(id))
+              (err => console.log('error with create room'))
         }
 
 
     render() {
+
         return (
             <div className="app">
                 <RoomList

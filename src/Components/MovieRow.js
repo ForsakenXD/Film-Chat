@@ -1,18 +1,29 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
 
+
+
+
+
+
 class MovieRow extends React.Component {
+
+
 
     viewMovie(){
       const url = "https://www.themoviedb.org/movie/" + this.props.movie.id
       const win = window.open(url,'_blank')
       win.focus();
     }
+    chat(name){
+      this.props.show(true)
+      this.props.roomName(name)
 
+
+
+    }
 
     render(){
-      console.log('xd')
-      console.log(this.props)
       return(
           <div style={{borderBottom:'2px solid #2c3440',marginTop:'2em'}}>
           <div className="grid-container" key={this.props.movie.id} >
@@ -21,7 +32,7 @@ class MovieRow extends React.Component {
               <h4 className="item">{this.props.movie.title}</h4>
               <p className="item">{this.props.movie.overview}</p>
               <Button variant="light" onClick={this.viewMovie.bind(this)} className="button-search1"><span>View</span></Button>
-              <Button variant="danger" onClick={this.props.show} className="button-search2"><span>Chat with a random fan about this movie!</span></Button>
+              <Button variant="danger" onClick={() => {this.chat(this.props.movie.title)}} className="button-search2"><span>Chat with a random fan about this movie!</span></Button>
             </div>
 
 
