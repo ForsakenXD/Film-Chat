@@ -5,8 +5,12 @@ import MessageList from './components/MessageList'
 import SendMessageForm from './components/SendMessageForm'
 import RoomList from './components/RoomList'
 import NewRoomForm from './components/NewRoomForm'
+import Username from './components/username.js'
 
 import { tokenUrl, instanceLocator } from './config'
+
+
+import 'rodal/lib/rodal.css';
 
 class ChatApp extends React.Component {
 
@@ -17,13 +21,24 @@ class ChatApp extends React.Component {
             messages: [],
             joinableRooms: [],
             joinedRooms: [],
-            state: true
+            state: true,
+            show:false
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.subscribeToRoom = this.subscribeToRoom.bind(this)
         this.getRooms = this.getRooms.bind(this)
         this.createRoom = this.createRoom.bind(this)
+        this.handleShow = this.handleShow.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
+
+    handleClose() {
+  this.setState({ show: false });
+}
+
+handleShow() {
+  this.setState({ show: true });
+}
 
     componentDidMount() {
         const chatManager = new Chatkit.ChatManager({
@@ -136,7 +151,7 @@ class ChatApp extends React.Component {
                 disabled={!this.state.roomId}
                 sendMessage={this.sendMessage} />
                 <NewRoomForm createRoom={this.createRoom}/>
-
+                <Username onSubmit={this.handleShow} />
             </div>
         );
     }
