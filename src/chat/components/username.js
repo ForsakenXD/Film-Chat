@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal,Button,Form} from 'react-bootstrap'
+import {Button,Form} from 'react-bootstrap'
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
 
@@ -38,7 +38,10 @@ handleShow() {
     handleSubmit(e){
       e.preventDefault()
       console.log(this.state.username)
-      this.setState({username:''})
+            this.props.usernameUpdate(this.state.username)
+      this.props.onSubmit(this.state.username)
+
+            this.setState({username:''})
       this.handleClose()
 
     }
@@ -53,9 +56,6 @@ handleShow() {
 
         return (
           <div >
-          <Button variant="primary" onClick={this.handleShow}>
-                    Change Username
-          </Button>
           <Rodal className="modall" visible={this.state.show} onClose={this.handleClose.bind(this)} width={40} height={40} measure={'%'} animation={'zoom'}>
           <Form onSubmit={this.handleSubmit} style={{width: '80%'}}>
               <Form.Label>Username</Form.Label>

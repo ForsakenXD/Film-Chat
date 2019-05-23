@@ -7,7 +7,8 @@ import RoomList from './components/RoomList'
 import NewRoomForm from './components/NewRoomForm'
 import Username from './components/username.js'
 
-import { tokenUrl, instanceLocator } from './config'
+
+
 
 
 import 'rodal/lib/rodal.css';
@@ -22,7 +23,8 @@ class ChatApp extends React.Component {
             joinableRooms: [],
             joinedRooms: [],
             state: true,
-            show:false
+            show:false,
+            usersWhoAreTyping:[]
         }
         this.sendMessage = this.sendMessage.bind(this)
         this.subscribeToRoom = this.subscribeToRoom.bind(this)
@@ -30,6 +32,46 @@ class ChatApp extends React.Component {
         this.createRoom = this.createRoom.bind(this)
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this)
+        this.init = this.init.bind(this)
+
+    }
+    updateText1 = (username) => {this.setState({ username })}
+
+
+
+    onUsernameSubmitted(username) {
+      fetch('http://localhost:3001/users',{
+        method:'POST',
+        headers:{
+          'Content-type':'application/json'
+        },
+        body:JSON.stringify({username})
+      })
+        .then(response => {
+          this.setState({
+            currentUsername: username
+          })
+          const chatManager = new Chatkit.ChatManager({
+              instanceLocator: 'v1:us1:8e5347bd-63e5-479a-b75c-ccb9da6fbf49',
+              userId:username,
+              tokenProvider: new Chatkit.TokenProvider({
+                  url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/8e5347bd-63e5-479a-b75c-ccb9da6fbf49/token'
+              })
+
+          })
+
+          chatManager.connect()
+          .then(currentUser => {
+              this.currentUser = currentUser
+              this.getRooms()
+          })
+          .catch(err => console.log('error on connecting: ', err))
+        console.log('success')
+      })
+        .catch(error => {
+        console.log(error)
+      })
     }
 
     handleClose() {
@@ -41,34 +83,24 @@ handleShow() {
 }
 
     componentDidMount() {
-        const chatManager = new Chatkit.ChatManager({
-            instanceLocator,
-            userId: 'User1',
-            tokenProvider: new Chatkit.TokenProvider({
-                url: tokenUrl
-            })
 
-        })
 
-        chatManager.connect()
-        .then(currentUser => {
-            this.currentUser = currentUser
-            this.getRooms()
-        })
-        .catch(err => console.log('error on connecting: ', err))
+
+
     }
     // when a user clikcs to chat for a certain movie this component lifecycle method gets called
     componentWillReceiveProps(nextProps){
       if(nextProps.roomName!==this.props.roomName){
           this.createRoom(nextProps.roomName)
+
       }
     }
 
 
 
+    init(){
 
-
-
+    }
 
 
 
@@ -95,8 +127,9 @@ handleShow() {
                     this.setState({
                         messages: [...this.state.messages, message],
                     })
-                }
-            }
+                },
+
+            },
         })
         .then(room => {
             this.setState({
@@ -115,9 +148,11 @@ handleShow() {
     }
 
     createRoom(name){
+            this.onUsernameSubmitted(username)
+            console.log(this.state.currentUsername)
             let index = false
             let id = ''
-            this.state.joinedRooms.forEach((movie) => {
+            this.state.joinableRooms.forEach((movie) => {
             if(name == movie.name)
               {
               index = true
@@ -131,8 +166,7 @@ handleShow() {
             .then(room => this.subscribeToRoom(room.id))
             .catch(err => console.log('error with create room'))
           else      //if there is just join it
-              (room => this.subscribeToRoom(id))
-              (err => console.log('error with create room'))
+            this.subscribeToRoom(id)
         }
 
 
@@ -146,12 +180,14 @@ handleShow() {
                     rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
                 <MessageList
                 roomId={this.state.roomId}
-                messages={this.state.messages} />
+                messages={this.state.messages}
+                username={this.state.currentUsername}
+                />
                 <SendMessageForm
                 disabled={!this.state.roomId}
                 sendMessage={this.sendMessage} />
-                <NewRoomForm createRoom={this.createRoom}/>
-                <Username onSubmit={this.handleShow} />
+              <NewRoomForm createRoom={this.createRoom} newus = {this.init}/>
+                <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1}/>
             </div>
         );
     }
