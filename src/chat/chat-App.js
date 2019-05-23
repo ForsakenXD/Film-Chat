@@ -33,7 +33,6 @@ class ChatApp extends React.Component {
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this)
-        this.init = this.init.bind(this)
 
     }
     updateText1 = (username) => {this.setState({ username })}
@@ -82,25 +81,20 @@ handleShow() {
   this.setState({ show: true });
 }
 
-    componentDidMount() {
 
-
-
-
-    }
+    
     // when a user clikcs to chat for a certain movie this component lifecycle method gets called
-    componentWillReceiveProps(nextProps){
-      if(nextProps.roomName!==this.props.roomName){
-          this.createRoom(nextProps.roomName)
-
-      }
+     componentWillReceiveProps(nextProps){
+        console.log(typeof this.state.currentUsername !== 'undefined')
+        if(typeof this.state.currentUsername !== 'undefined')
+            {
+              console.log('tf')
+               this.createRoom(nextProps.roomName)
+            }
     }
 
 
 
-    init(){
-
-    }
 
 
 
@@ -148,17 +142,29 @@ handleShow() {
     }
 
     createRoom(name){
-            this.onUsernameSubmitted(username)
+
             console.log(this.state.currentUsername)
             let index = false
             let id = ''
             this.state.joinableRooms.forEach((movie) => {
+              console.log(`target = ${name} `)
+
             if(name == movie.name)
               {
               index = true
               id = movie.id
               }
           })
+          this.state.joinedRooms.forEach((movie) => {
+            console.log(`target = ${name} `)
+
+          if(name == movie.name)
+            {
+            index = true
+            id = movie.id
+            }
+        })
+          console.log(index)
           if(!index)  //ensures there isn't a chatroom for the same movie
             this.currentUser.createRoom({
               name
@@ -167,7 +173,10 @@ handleShow() {
             .catch(err => console.log('error with create room'))
           else      //if there is just join it
             this.subscribeToRoom(id)
-        }
+
+          }
+
+
 
 
     render() {
@@ -186,7 +195,7 @@ handleShow() {
                 <SendMessageForm
                 disabled={!this.state.roomId}
                 sendMessage={this.sendMessage} />
-              <NewRoomForm createRoom={this.createRoom} newus = {this.init}/>
+              <NewRoomForm createRoom={this.createRoom}/>
                 <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1}/>
             </div>
         );

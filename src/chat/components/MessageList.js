@@ -34,7 +34,9 @@ class MessageList extends React.Component {
             <div className="message-list">
                 <h3 style={{textAlign:'center',borderBottom:'1px solid rgb(153, 170, 187)'}}>Username:{this.props.username}</h3>
                 {this.props.messages.map((message, index) => {
+                      {console.log(message)}
                     return (
+
                         <Message key={message.id} username={message.senderId} text={message.text} />
                     )
                 })}
