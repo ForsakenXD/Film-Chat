@@ -6,9 +6,9 @@ import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
 import ChatApp from './chat/chat-App.js'
-import {Button,Form} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import { Link, animateScroll as scroll } from "react-scroll";
-import posed, { PoseGroup } from 'react-pose';
+import posed from 'react-pose';
 import Rodal from 'rodal';
 
 import 'rodal/lib/rodal.css';
@@ -32,7 +32,7 @@ const Sidebar = posed.ul({
 class App extends Component {
   constructor(){
     super()
-    this.state = {isOpen: false,visible:false}
+    this.state = {isOpen: false,visible:false,trigger:false}
     this.updateText1 = this.updateText1
     this.performSearch = this.performSearch.bind(this)
     this.image = this.image.bind(this)
@@ -53,6 +53,8 @@ room = (roomName) => {this.setState({roomName})}
 
 
   updateText1 = (visible) => {this.setState({ visible })}
+
+  temp = () => {this.setState({trigger:true})}
 
 
 
@@ -158,7 +160,7 @@ image(){
 
 
                  <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
-                     <ChatApp roomName={this.state.roomName} id={'nikos'}/>
+                     <ChatApp roomName={this.state.roomName} id={'nikos'} handler={this.temp}/>
                  </Rodal>
 
 

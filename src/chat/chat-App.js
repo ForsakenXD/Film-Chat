@@ -59,18 +59,25 @@ class ChatApp extends React.Component {
               })
 
           })
-
           chatManager.connect()
           .then(currentUser => {
               this.currentUser = currentUser
+
+
               this.getRooms()
+
+
           })
+
+
           .catch(err => console.log('error on connecting: ', err))
+
         console.log('success')
       })
         .catch(error => {
         console.log(error)
       })
+
     }
 
     handleClose() {
@@ -82,18 +89,15 @@ handleShow() {
 }
 
 
-    
+
     // when a user clikcs to chat for a certain movie this component lifecycle method gets called
      componentWillReceiveProps(nextProps){
-        console.log(typeof this.state.currentUsername !== 'undefined')
-        if(typeof this.state.currentUsername !== 'undefined')
-            {
-              console.log('tf')
-               this.createRoom(nextProps.roomName)
-            }
+        this.setState({roomName:nextProps.roomName})
+
+        if( (typeof this.state.currentUsername !== 'undefined'))
+          this.createRoom(nextProps.roomName)
+
     }
-
-
 
 
 
@@ -141,30 +145,28 @@ handleShow() {
         })
     }
 
-    createRoom(name){
+     createRoom(name){
 
             console.log(this.state.currentUsername)
+
             let index = false
             let id = ''
             this.state.joinableRooms.forEach((movie) => {
               console.log(`target = ${name} `)
 
-            if(name == movie.name)
+            if(name === movie.name)
               {
               index = true
               id = movie.id
               }
           })
           this.state.joinedRooms.forEach((movie) => {
-            console.log(`target = ${name} `)
-
-          if(name == movie.name)
+          if(name === movie.name)
             {
             index = true
             id = movie.id
             }
         })
-          console.log(index)
           if(!index)  //ensures there isn't a chatroom for the same movie
             this.currentUser.createRoom({
               name
@@ -173,7 +175,6 @@ handleShow() {
             .catch(err => console.log('error with create room'))
           else      //if there is just join it
             this.subscribeToRoom(id)
-
           }
 
 

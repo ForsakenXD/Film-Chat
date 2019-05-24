@@ -48,8 +48,6 @@ handleShow() {
 
     componentDidMount(){
       this.handleShow()
-      console.log('1')
-
     }
 
     render () {
@@ -72,7 +70,6 @@ handleShow() {
         </div>
 
         )
-        console.log(this.state.username)
     }
 }
 

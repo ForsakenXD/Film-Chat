@@ -16,11 +16,28 @@ class MessageList extends React.Component {
       }
     }
 
+    renderUserMessage(){
+      if (this.props.messages.length !== 0) {
+        return(
+        this.props.messages.map((message, index) => {
+              return (
+            <Message key={message.id} username={message.senderId} text={message.text} />
+            )
+        })
+        );
+
+      } else {
+        return (
+          <div className="center">
+          <h2 >No messages.Type something and be the first one !</h2>
+          </div>
+        );
+      }
+    }
 
 
 
     render() {
-      console.log(this.props.roomId)
       if(!this.props.roomId){
           return(
           <div className="message-list">
@@ -33,13 +50,11 @@ class MessageList extends React.Component {
         return (
             <div className="message-list">
                 <h3 style={{textAlign:'center',borderBottom:'1px solid rgb(153, 170, 187)'}}>Username:{this.props.username}</h3>
-                {this.props.messages.map((message, index) => {
-                      {console.log(message)}
-                    return (
 
-                        <Message key={message.id} username={message.senderId} text={message.text} />
-                    )
-                })}
+                {this.renderUserMessage()}
+
+
+
             </div>
         )
     }

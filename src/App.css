@@ -303,6 +303,30 @@ opacity: 1!important;
   margin-top:6em;
 }
 
+
+
+.center{
+  line-height: 500px;
+height: 100%;
+
+text-align: center;
+
+}
+
+.center h2{
+  color: transparent;
+background: #666666;
+-webkit-background-clip: text;
+-moz-background-clip: text;
+background-clip: text;
+text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
+  color: #c8c8c8;
+  line-height: 1.5;
+display: inline-block;
+vertical-align: middle;
+font-size:2.4rem;
+}
+
 /*  */
 /*CHAT POPUP CSS  */
 /* .modal{
