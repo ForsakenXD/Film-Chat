@@ -20,7 +20,7 @@ class Username extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this)
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
-
+      this.randomUsername = this.randomUsername.bind(this);
     }
 
 
@@ -46,12 +46,19 @@ handleShow() {
 
     handleSubmit(e){
       e.preventDefault()
-      console.log(this.state.username)
-            this.props.usernameUpdate(this.state.username)
-      this.props.onSubmit(this.state.username)
+      if(this.state.username !== '')
+        {
 
-            this.setState({username:''})
-      this.handleClose()
+          console.log(this.state.username)
+                this.props.usernameUpdate(this.state.username)
+          this.props.onSubmit(this.state.username)
+
+                this.setState({username:''})
+          this.handleClose()
+        }
+      else {
+        console.log('you need to enter a username')
+      }
 
     }
 
@@ -59,8 +66,26 @@ handleShow() {
       this.handleShow()
     }
 
+    random(){
+      let username = []
+      for(let i=0; i < 12; i++)
+          {
+          let choice = Math.floor(Math.random() * 38)
+          if(choice <= 26)
+            username.push(String.fromCharCode(97 + choice))
+          else{
+            username.push(choice)
+          }
+          }
+      return username.join("")
 
 
+    }
+
+randomUsername(){
+  this.setState({username:this.random()})
+
+}
 
     render () {
         const {show,target} = this.state;
@@ -82,12 +107,16 @@ handleShow() {
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="Enter username" onChange={this.handleChange} value={this.state.username}/>
               <Form.Text className="text-muted" >
-                We'll never share your email with anyone else.
+                keep it simple :)
               </Form.Text>
             <Button variant="primary" type="submit" >
               Submit
             </Button>
+
           </Form>
+          <Button variant="info" type="submit"  onClick={this.randomUsername}>
+            Random
+          </Button>
         </Rodal>
 
         </div>
