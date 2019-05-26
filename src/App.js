@@ -32,7 +32,7 @@ const Sidebar = posed.ul({
 class App extends Component {
   constructor(){
     super()
-    this.state = {isOpen: false,visible:false,trigger:false}
+    this.state = {isOpen: false,visible:false,trigger:false,director:''}
     this.updateText1 = this.updateText1
     this.performSearch = this.performSearch.bind(this)
     this.image = this.image.bind(this)
@@ -85,13 +85,16 @@ room = (roomName) => {this.setState({roomName})}
           //console.log(movie)
           if(movie.poster_path !== null)
           {
-            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room}/>
+            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} />
             movieRows.push(movieRow)
           }
         })
         this.setState({rows:movieRows})
       }.bind(this))
   }
+
+
+
 
 
 searchChangeHandler(event){
@@ -153,7 +156,15 @@ image(){
         <RandomGenre show={this.updateText1} roomName={this.room}/>
         <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
         <div className="search-background search__container" id="section1">
-          <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
+            <div>
+            <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
+            { /*
+            <Button variant="primary" type="submit"  id="sort_button">
+              Sort
+            </Button>
+            */
+            }
+            </div>
             {this.state.rows}
         </div>
       </div>

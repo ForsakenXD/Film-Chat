@@ -6,7 +6,8 @@ import {Button} from 'react-bootstrap'
 
 const gradient = {
   //background:'linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(249,249,255,0) 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 77%, rgba(51,255,222,0.3) 94%)'
-  background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(51,255,222,0.3) 100%)'
+  background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(51,255,222,0.3) 100%)',
+  backgroundColor:"transparent"
   //background: 'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)'
 }
 
@@ -42,7 +43,7 @@ class PopularMovies extends React.Component{
               const url1 = "https://www.themoviedb.org/movie/" + movie.id
               const mov = <figure className="imghvr-blur" style={{backgroundColor: 'transparent'}} key={movie.original_title}>
                               <img alt={(movie.original_title)} src={url2}   key={(movie.original_title)} className="poster"/>
-                              <figcaption style={{backgroundColor:"transparent"},gradient}>
+                              <figcaption style={gradient}>
                                 <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
                                     <div className="d-flex flex-row" >
                                     <Button onClick={()=> window.open(url1, "_blank")} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>

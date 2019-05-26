@@ -70,12 +70,11 @@ handleShow() {
       let username = []
       for(let i=0; i < 12; i++)
           {
-          let choice = Math.floor(Math.random() * 38)
-          if(choice <= 26)
-            username.push(String.fromCharCode(97 + choice))
-          else{
-            username.push(choice)
-          }
+          let rand_num = Math.floor(Math.random() * 38)
+          if(rand_num <= 26) //if the random number is from 0-26 that means that the character pushed to the array will be a letter(since the alphabet has 26 letters,else it will be a number)
+            username.push(String.fromCharCode(97 + rand_num))
+          else
+            username.push(rand_num)
           }
       return username.join("")
 
@@ -109,12 +108,11 @@ randomUsername(){
               <Form.Text className="text-muted" >
                 keep it simple :)
               </Form.Text>
-            <Button variant="primary" type="submit" >
-              Submit
-            </Button>
-
           </Form>
-          <Button variant="info" type="submit"  onClick={this.randomUsername}>
+          <Button variant="primary" type="submit" className="username-buttons" onClick={this.handleSubmit} style={{marginRight:'0.5em'}}>
+            Submit
+          </Button>
+          <Button variant="info" type="submit"  className="username-buttons" onClick={this.randomUsername}>
             Random
           </Button>
         </Rodal>

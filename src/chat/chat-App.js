@@ -197,7 +197,8 @@ handleShow() {
                 />
                 <SendMessageForm
                 disabled={!this.state.roomId}
-                sendMessage={this.sendMessage} />
+                sendMessage={this.sendMessage}
+                />
               <NewRoomForm createRoom={this.createRoom}/>
                 <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1}/>
             </div>

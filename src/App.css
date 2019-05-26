@@ -105,6 +105,17 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
 
 /*Search-bar Styling END  */
 
+/* Sort button styling */
+#sort_button{
+  margin-top: 0.5em;
+  float:right;
+  width:5%;
+  background-color:crimson;
+  border-color:crimson;
+}
+
+
+
 /*MOVIE STYLING  GRID*/
 
   .search-background{
@@ -582,6 +593,19 @@ font-size:2.4rem;
   #button1,#button2{
     width:50%;
     font-size:9px;
+  }
+
+  .item-2 p{
+    font-size:0;
+  }
+
+  .button-search1,.button-search2,.username-buttons{
+    width:100%;
+  }
+
+  .modall{
+    width:100%!important;
+    height:100%!important;
   }
 
 }
