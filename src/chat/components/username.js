@@ -1,14 +1,20 @@
 import React from 'react'
-import {Button,Form} from 'react-bootstrap'
+import {Button,Form,Overlay,Popover} from 'react-bootstrap'
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
 
 class Username extends React.Component {
     constructor(){
       super()
+
+      this.handleClick = ({ target }) => {
+        this.setState(s => ({ target, show2: !s.show2 }));
+      };
+
       this.state={
         username:'',
-        show:false
+        show:false,
+        show2:false,
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
@@ -26,6 +32,9 @@ class Username extends React.Component {
 handleShow() {
   this.setState({ show: true });
 }
+
+
+
 
 
     handleChange(e){
@@ -50,11 +59,25 @@ handleShow() {
       this.handleShow()
     }
 
-    render () {
 
+
+
+    render () {
+        const {show,target} = this.state;
         return (
           <div >
-          <Rodal className="modall" visible={this.state.show} onClose={this.handleClose.bind(this)} width={40} height={40} measure={'%'} animation={'zoom'}>
+          <Rodal className="modall" visible={this.state.show}   onClose={this.handleClick} width={40} height={40} measure={'%'} animation={'zoom'}>
+            <Overlay
+              show={this.state.show2}
+              target={this.state.target}
+              placement="top"
+              container={this}
+              containerPadding={20}
+            >
+              <Popover id="popover-contained" title="Hey There">
+                <strong>Unfortunatly you have to enter a username before closing this window</strong>
+              </Popover>
+            </Overlay>
           <Form onSubmit={this.handleSubmit} style={{width: '80%'}}>
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="Enter username" onChange={this.handleChange} value={this.state.username}/>
