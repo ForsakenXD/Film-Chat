@@ -7,7 +7,7 @@ import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
 import ChatApp from './chat/chat-App.js'
 import {Button} from 'react-bootstrap'
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import posed from 'react-pose';
 import Rodal from 'rodal';
 

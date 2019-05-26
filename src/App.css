@@ -424,12 +424,19 @@ font-size:2.4rem;
     color: crimson;
     font-weight: 600;
     text-decoration: none;
-
+    transition:0.3s;
  }
 
 .rooms-list .room.active a {
     color: black;
 }
+
+.room a:hover{
+
+  color:black;
+}
+
+
 
 .new-room-form {
     padding: 0 5px;

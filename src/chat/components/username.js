@@ -87,7 +87,6 @@ randomUsername(){
 }
 
     render () {
-        const {show,target} = this.state;
         return (
           <div >
           <Rodal className="modall" visible={this.state.show}   onClose={this.handleClick} width={40} height={40} measure={'%'} animation={'zoom'}>
