@@ -94,7 +94,7 @@ handleShow() {
      componentWillReceiveProps(nextProps){
         this.setState({roomName:nextProps.roomName})
 
-        if( (typeof this.state.currentUsername !== 'undefined'))
+        if( (typeof this.state.currentUsername !== 'undefined' ))
           this.createRoom(nextProps.roomName)
 
     }
@@ -148,12 +148,9 @@ handleShow() {
      createRoom(name){
 
             console.log(this.state.currentUsername)
-
             let index = false
             let id = ''
             this.state.joinableRooms.forEach((movie) => {
-              console.log(`target = ${name} `)
-
             if(name === movie.name)
               {
               index = true
@@ -167,15 +164,20 @@ handleShow() {
             id = movie.id
             }
         })
-          if(!index)  //ensures there isn't a chatroom for the same movie
+          if(typeof name !== 'undefined')
+          {
+          if(!index)
+            {//ensures there isn't a chatroom for the same movie
             this.currentUser.createRoom({
               name
             })
             .then(room => this.subscribeToRoom(room.id))
             .catch(err => console.log('error with create room'))
+            }
           else      //if there is just join it
             this.subscribeToRoom(id)
           }
+        }
 
 
 
