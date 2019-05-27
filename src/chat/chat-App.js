@@ -55,7 +55,7 @@ class ChatApp extends React.Component {
               instanceLocator: 'v1:us1:8e5347bd-63e5-479a-b75c-ccb9da6fbf49',
               userId:username,
               tokenProvider: new Chatkit.TokenProvider({
-                  url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/8e5347bd-63e5-479a-b75c-ccb9da6fbf49/token'
+                  url: 'http://localhost:3001/authenticate'
               })
 
           })
@@ -117,7 +117,6 @@ handleShow() {
     subscribeToRoom(roomId) {
         this.setState({messages:[]})
         this.setState({ messages: [] })
-        console.log(roomId)
         this.currentUser.subscribeToRoom({
             roomId: roomId,
             hooks: {
@@ -147,7 +146,6 @@ handleShow() {
 
      createRoom(name){
 
-            console.log(this.state.currentUsername)
             let index = false
             let id = ''
             this.state.joinableRooms.forEach((movie) => {
