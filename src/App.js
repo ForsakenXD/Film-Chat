@@ -5,6 +5,7 @@ import MovieRow from './Components/MovieRow.js'
 import NavigationBar from './Components/Header.js'
 import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
+import Carousel from './Components/carousel.js'
 import ChatApp from './chat/chat-App.js'
 import {Button} from 'react-bootstrap'
 import { Link } from "react-scroll";
@@ -58,12 +59,7 @@ room = (roomName) => {this.setState({roomName})}
 
 
 
-  show() {
-
-     this.setState({ visible: true });
-
-
- }
+  show = () => { this.setState({ visible: true }); }
 
  hide() {
 
@@ -139,7 +135,7 @@ image(){
                   spy={true}
                   smooth={true}
                   offset={-70}
-                  duration={1500}
+                  duration={0}
                   >
                 <Button size="lg" id="button1" >search for a specific movie</Button>
                 </Link>
@@ -153,7 +149,10 @@ image(){
       <div className="popular-movies">
       <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
         <PopularMovies show={this.updateText1}  roomName={this.room}/>
+        <h1 className="popular-movies-text">Daily staff picks</h1>
+        <Carousel show={this.show} roomName={this.room}/>
         <RandomGenre show={this.updateText1} roomName={this.room}/>
+        
         <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
         <div className="search-background search__container" id="section1">
             <div>

@@ -572,6 +572,20 @@ font-size:2.4rem;
     top: 10px;
 }
 
+
+.hovers:hover::before{
+  content: "";
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  background: linear-gradient(to right,transparent -40%,#181818);
+  transition: all 5s linear;
+
+}
+
+
 /*CHAT STYLING END  */
 
 /*  */
@@ -645,3 +659,4 @@ font-size:2.4rem;
   }
 
 }
+
