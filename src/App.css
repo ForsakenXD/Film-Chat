@@ -1,4 +1,6 @@
-
+html{
+  scroll-behavior: smooth;
+}
 
 @font-face {
   font-family: 'TiemposHeadlineWeb-Bold';
@@ -11,6 +13,31 @@
 
 body{
   background-color: #292d33;
+}
+
+.header-image{
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  min-height:40vh;
+
+
+  width:90%;
+  margin:auto;
+  align-items:center;
+  background-size:cover;
+  background-position: 50%;
+  /* background: linear-gradient(transparent -30%,#181818); */
+}
+
+.header-image::before{
+  content: "";
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  background: linear-gradient(transparent -30%,#181818);
 }
 
 
@@ -193,6 +220,8 @@ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.
   padding: 20px;
   text-align: center;
 }
+
+
 
 .noir-background-text-header{
   font-family: TiemposHeadlineWeb-Bold,sans-serif;

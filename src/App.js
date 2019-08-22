@@ -124,11 +124,11 @@ image(){
     const { isOpen } = this.state;
   return (
     <div >
-      <NavigationBar />
+      <NavigationBar performSearch={this.performSearch}/>
       <div>
-      <div className="noir-background"></div>
+      <div className="noir-background "></div>
 
-        <div className="noir-background-text-border">
+        <div className="noir-background-text-border ">
           <Sidebar className="sidebar" pose={isOpen ? 'open' : 'closed'}>
             <h1 className="noir-background-text-header">Filmchat</h1>
             <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>

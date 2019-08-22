@@ -1,30 +1,58 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
+import { Link } from "react-scroll";
 
-function NavigationBar(){
-  return(
-    <div className = "flex">
-    <Navbar bg="" expand="lg"  id="navbar" className="lg " >
-      <img href="#home" alt="logo" src="logo2.png"></img>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto ">
-      <Nav.Link href="#link">Movies</Nav.Link>
-      <NavDropdown title="More" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Project's github</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Developmental difficulties/project blog</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Talking about film chat's potential</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">About me</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Form inline className="">
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="" className="nav-search" onClick={() => console.log('1')}>Search for a movie</Button>
-    </Form>
-  </Navbar.Collapse>
-</Navbar>
-</div>)
-}
+
+
+
+class NavigationBar extends Component{
+    constructor(){
+      super()
+      this.state = {
+        searchVal: ''
+      }
+    }
+
+
+    onSubmit(e){
+      e.preventDefault();
+      if(this.state.searchVal !== ""){
+        window.location.hash="/"
+        this.props.performSearch(this.state.searchVal)
+        window.location.hash="section1"
+      }
+    
+    }
+    
+    onType(searchVal){
+      this.setState({
+        searchVal
+      })
+    }
+
+
+
+    render(){
+      return(
+        <div className = "flex">
+        <Navbar bg="" expand="lg"  id="navbar" className="lg " >
+          <img href="#home" alt="logo" src="logo2.png" style={{cursor:'pointer'}} onClick={() => window.location.reload(false)}></img>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto ">
+          
+
+        </Nav>
+        <Form inline className="" onSubmit={(e) => this.onSubmit(e)}>
+          <FormControl type="text" placeholder="Ichi the killer" className="mr-sm-2" onChange={(e) => this.onType(e.target.value)}/>
+          <Link activeClass="active" to="section1" spy={true} smooth={true} offset={-70} duration={0} >
+            <Button variant="" className="nav-search" onClick={(e) => this.onSubmit(e)}>Search for a movie</Button>
+          </Link>
+        </Form>
+      </Navbar.Collapse>
+    </Navbar>
+    </div>)
+    }
+  }
 
 export default NavigationBar
