@@ -7,10 +7,13 @@ import PopularMovies from './Components/popular-movies.js'
 import RandomGenre from './Components/random-genre.js'
 import Carousel from './Components/carousel.js'
 import ChatApp from './chat/chat-App.js'
+import Body from './Components/ViewMovie/body.js'
 import {Button} from 'react-bootstrap'
 import { Link } from "react-scroll";
 import posed from 'react-pose';
 import Rodal from 'rodal';
+import { Route, Switch } from "react-router-dom";
+
 
 import 'rodal/lib/rodal.css';
 
@@ -45,22 +48,13 @@ class App extends Component {
       setTimeout(this.toggle, 350);
 
     }
-room = (roomName) => {this.setState({roomName})}
-
-
-
+  room = (roomName) => {this.setState({roomName})}
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
-  //BUTTONS ANIMATION
-
-
   updateText1 = (visible) => {this.setState({ visible })}
-
   temp = () => {this.setState({trigger:true})}
-
-
-
-  show = () => { this.setState({ visible: true }); }
-
+  show(){ 
+    this.setState({ visible: true }); 
+  }
  hide() {
 
      this.setState({ visible: false});
@@ -119,63 +113,68 @@ image(){
   render(){
     const { isOpen } = this.state;
   return (
-    <div >
-      <NavigationBar performSearch={this.performSearch}/>
-      <div>
-      <div className="noir-background "></div>
+    <Switch>
+    <Route exact path="/"   render={()=>  
+        <div >
+          <NavigationBar performSearch={this.performSearch}/>
+          <div>
+          <div className="noir-background "></div>
 
-        <div className="noir-background-text-border ">
-          <Sidebar className="sidebar" pose={isOpen ? 'open' : 'closed'}>
-            <h1 className="noir-background-text-header">Filmchat</h1>
-            <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
+            <div className="noir-background-text-border ">
+              <Sidebar className="sidebar" pose={isOpen ? 'open' : 'closed'}>
+                <h1 className="noir-background-text-header">Filmchat</h1>
+                <p className="noir-background-text-paragraph">A Website where Film-fans through out the World can privately and Anonymously Chat about their favourite movies in chatrooms created on the spot!</p>
 
-              <Link
-                  activeClass="active"
-                  to="section1"
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={0}
-                  >
-                <Button size="lg" id="button1" >search for a specific movie</Button>
-                </Link>
-            <Button size="lg" id="button2" onClick={this.show.bind(this)}>See all chatrooms</Button>
-          </Sidebar >
-          <p id="movie-title">{this.state.background + '(2003)'}</p>
-          <img src="arrow.png" alt="arrow" width="50" />
-        </div>
-
-      </div>
-      <div className="popular-movies">
-      <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
-        <PopularMovies show={this.updateText1}  roomName={this.room}/>
-        <h1 className="popular-movies-text">Daily staff picks</h1>
-        <Carousel show={this.show} roomName={this.room}/>
-        <RandomGenre show={this.updateText1} roomName={this.room}/>
-        
-        <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
-        <div className="search-background search__container" id="section1">
-            <div>
-            <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
-            { /*
-            <Button variant="primary" type="submit"  id="sort_button">
-              Sort
-            </Button>
-            */
-            }
+                  <Link
+                      activeClass="active"
+                      to="section1"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={0}
+                      >
+                    <Button size="lg" id="button1" >search for a specific movie</Button>
+                    </Link>
+                <Button size="lg" id="button2" onClick={this.show.bind(this)}>See all chatrooms</Button>
+              </Sidebar >
+              <p id="movie-title">{this.state.background + '(2003)'}</p>
+              <img src="arrow.png" alt="arrow" width="50" />
             </div>
-            {this.state.rows}
+
+          </div>
+          <div className="popular-movies">
+          <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
+            <PopularMovies show={this.updateText1}  roomName={this.room}/>
+            <h1 className="popular-movies-text">Daily staff picks</h1>
+            <Carousel show={this.updateText1} roomName={this.room}/>
+            <RandomGenre show={this.updateText1} roomName={this.room}/>
+            
+            <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
+            <div className="search-background search__container" id="section1">
+                <div>
+                <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
+                { /*
+                <Button variant="primary" type="submit"  id="sort_button">
+                  Sort
+                </Button>
+                */
+                }
+                </div>
+                {this.state.rows}
+            </div>
+          </div>
+
+
+                    <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
+                        <ChatApp roomName={this.state.roomName} id={'nikos'} handler={this.temp}/>
+                    </Rodal>
+
+
+
         </div>
-      </div>
-
-
-                 <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
-                     <ChatApp roomName={this.state.roomName} id={'nikos'} handler={this.temp}/>
-                 </Rodal>
-
-
-
-    </div>
+        }/>
+        <Route exact path="/artist" render={() => <Body />}/>
+      </Switch>
   );
 }}
 
