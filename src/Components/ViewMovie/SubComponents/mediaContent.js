@@ -1,5 +1,7 @@
 import React, { Component,useState} from 'react'
-import { tsThisType } from '@babel/types';
+
+
+
 
 class MediaContent extends Component{
     constructor(props){
@@ -51,7 +53,12 @@ class MediaContent extends Component{
         <div style={{backgroundColor:'#29313B',padding:'1.5em',marginBottom:'2em',border:'1px solid crimson'}} className="paper">
             <div>
            {this.state.current_array.map((image,index) => {
-               return index >= this.state.current_page * 10 && index<  this.state.current_page * 10 + 10 ? <img style={{marginRight:'1em',marginBottom:'1em'}} width={this.state.current_section === 'posters' ? 200 : 250} src={`https://image.tmdb.org/t/p/original/${image.file_path}`} alt={image.vote_count} /> : null
+               return index >= this.state.current_page * 10 && index<  this.state.current_page * 10 + 10 ? 
+               <figure className="imghvr-blur" style={{backgroundColor: 'transparent',cursor:'pointer'}} key={index} onClick={() => window.open(`https://image.tmdb.org/t/p/original/${image.file_path}`)}>
+                <img  style={{marginRight:'1em',marginBottom:'1em'}} width={this.state.current_section === 'posters' ? 200 : 250} src={`https://image.tmdb.org/t/p/original/${image.file_path}`} alt={image.vote_count} /> 
+                              <figcaption style={{backgroundColor:'transparent'}}>
+                              </figcaption>
+                          </figure> : null
            })}
            </div>
            <div style={{display:'flex',justifyContent:'center'}}>
