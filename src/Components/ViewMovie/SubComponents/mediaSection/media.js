@@ -13,8 +13,9 @@ class Media extends Component{
                 <div style={{display:'flex'}} >
                 {this.state.current === 'posters' ? <h2 style={{marginRight:'0.5em',color:'crimson'}}>Posters</h2> : <h2 style={{marginRight:'0.5em',cursor:'pointer'}} onClick={() => this.setState({ current:'posters'})}>Posters</h2> }   
                 {this.state.current === 'backdrops' ? <h2 style={{marginRight:'0.5em',color:'crimson'}}>Backdrop images</h2> : <h2 style={{marginRight:'0.5em',cursor:'pointer'}} onClick={() => this.setState({ current:'backdrops'})}>Backdrop images</h2>}
+                {this.props.videos.length > 1 ? this.state.current === 'videos' ? <h2 style={{marginRight:'0.5em',color:'crimson'}}>Videos</h2> : <h2 style={{marginRight:'0.5em',cursor:'pointer'}} onClick={() => this.setState({ current:'videos'})}>Videos</h2> : null}
                 </div>
-                <MediaContent images={this.props.images} current={this.state.current}/>
+                <MediaContent videos={this.props.videos} images={this.props.images} current={this.state.current}/>
             </section>
         )
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Castcrew from './cast-crew'
-import Media from './media'
+import Castcrew from './castSection/cast-crew'
+import Media from './mediaSection/media'
 import { Carousel } from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 
@@ -37,13 +37,13 @@ class Details extends Component{
 
                                 </div>
                                 <div className="cast-item1">
-                                    <iframe id="ytplayer" type="text/html" width="100%" height="460" src={`https://www.youtube.com/embed/${this.props.data.videos.results[0].key}?enablejsapi=1&autoplay=1&color=white&loop=1&mute=1`}
+                                    <iframe id="ytplayer" type="text/html" width="100%" height="460" 
+                                    src={`https://www.youtube.com/embed/${this.props.data.videos.results[0].key}?enablejsapi=1&autoplay=1&color=white&loop=1&mute=1&playlist=${this.props.data.videos.results[0].key}`}
                                     frameBorder="0" align="middle" className="ytube" />                                   
                                 </div>
                                 <Castcrew cast={this.props.data.credits.cast} crew={this.props.data.credits.crew}/>
-                                <Media images={this.props.data.images}/>
+                                <Media images={this.props.data.images} videos={this.props.data.videos.results}/>
                             </div>
-                            
                         </div>
                         {/* <section className="backdrop-container" style={{top:'0%',zIndex:'-22'}}>
                     <div className="backdrop" style={{left:'unset'}}>
