@@ -11,10 +11,11 @@ class Details extends Component{
                         <div className="content-wrap">
                             <div className="content-grid">
                                 <div>
-                                {this.props.data.images.posters[0].file_path ? <img width="250" src={`https://image.tmdb.org/t/p/original//${this.props.data.images.posters[0].file_path}`} alt={this.props.data.title} style={{marginRight:'2em'}}/> : null}
-                                <h2 style={{color:'lightgrey',fontSize:'1.2rem'}}>Rating:<span style={{color:'grey'}}>{this.props.data.vote_average}/10</span></h2>
-                                <h2 style={{color:'lightgrey',fontSize:'1.2rem'}}>Runtime:<span style={{color:'grey'}}>{this.props.data.runtime}minutes</span></h2>
-                                <Button variant="danger" >CHAT</Button>
+                                    {this.props.data.images.posters[0].file_path ? <img width="250" src={`https://image.tmdb.org/t/p/original//${this.props.data.images.posters[0].file_path}`} alt={this.props.data.title} style={{marginRight:'2em'}}/> : null}
+                                    <h2 style={{color:'lightgrey',fontSize:'1.2rem'}}>Rating:<span style={{color:'grey'}}>{this.props.data.vote_average}/10</span></h2>
+                                    <h2 style={{color:'lightgrey',fontSize:'1.2rem'}}>Runtime:<span style={{color:'grey'}}>{this.props.data.runtime}minutes</span></h2>
+                                    <Button variant="danger" style={{backgroundColor:'black'}}>CHAT NOW</Button>
+                                    <img style={{marginLeft:'0.4em',cursor:'pointer'}} onClick={() => window.open(`https://www.themoviedb.org/movie/${this.props.data.id}`)} width="50" src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg" />
                                 </div>
                                 <div style={{marginRight:'0.3em'}}>
                                     <h1 style={{color:'white'}}>{this.props.data.title}</h1>

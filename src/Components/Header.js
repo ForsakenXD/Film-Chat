@@ -1,42 +1,53 @@
 import React, { Component } from 'react'
 import {Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
 import { Link } from "react-scroll";
+import {  Redirect } from 'react-router'
 
 
 
 
 class NavigationBar extends Component{
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
       this.state = {
-        searchVal: ''
+        searchVal: '',
+        redirectToReferrer: false
       }
     }
 
 
-    onSubmit(e){
+    async onSubmit(e){
       e.preventDefault();
+      window.location.hash= "/"
       if(this.state.searchVal !== ""){
-        window.location.hash="/"
-        this.props.performSearch(this.state.searchVal)
-        window.location.hash="section1"
+        if(window.location.pathname !== '/')
+          await this.onLogoClick()
+        await this.props.performSearch(this.state.searchVal)
+        window.location.hash= await "Search"
+               
       }
     
     }
     
     onType(searchVal){
-      this.setState({
-        searchVal
-      })
+      this.setState({ searchVal })
+    }
+
+    onLogoClick(){
+         this.setState({ redirectToReferrer: true})
     }
 
 
 
     render(){
+      console.log(this.props)
+      const redirectToReferrer = this.state.redirectToReferrer;
+      if (redirectToReferrer === true)
+        return   <Redirect to={`/`}  />
       return(
         <div className = "flex">
         <Navbar bg="" expand="lg"  id="navbar" className="lg " >
-          <img href="#home" alt="logo" src="logo2.png" style={{cursor:'pointer'}} onClick={() => window.location.reload(false)}></img>
+          <img href="#home" alt="logo" src="https://i.ibb.co/qYynBFf/logo2.png" style={{cursor:'pointer'}} onClick={() => this.onLogoClick()}></img>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto ">

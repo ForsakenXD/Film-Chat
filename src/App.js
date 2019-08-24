@@ -52,6 +52,8 @@ class App extends Component {
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
   updateText1 = (visible) => {this.setState({ visible })}
   temp = () => {this.setState({trigger:true})}
+  setID = (id) => { this.setState({ movieID:id })}
+
   show(){ 
     this.setState({ visible: true }); 
   }
@@ -75,7 +77,7 @@ class App extends Component {
           //console.log(movie)
           if(movie.poster_path !== null)
           {
-            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} />
+            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} setID={this.setID}/>
             movieRows.push(movieRow)
           }
         })
@@ -127,7 +129,7 @@ image(){
 
                   <Link
                       activeClass="active"
-                      to="section1"
+                      to="Search"
                       spy={true}
                       smooth={true}
                       offset={-70}
@@ -150,7 +152,7 @@ image(){
             <RandomGenre show={this.updateText1} roomName={this.room}/>
             
             <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
-            <div className="search-background search__container" id="section1">
+            <div className="search-background search__container" id="Search">
                 <div>
                 <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
                 { /*
@@ -173,7 +175,7 @@ image(){
 
         </div>
         }/>
-        <Route exact path="/artist" render={() => <Body />}/>
+        <Route  path="/film/:id" render={(props) => <Body props={props} performSearch={this.performSearch} />}/>
       </Switch>
   );
 }}

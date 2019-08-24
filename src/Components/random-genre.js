@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
+import {  Redirect } from 'react-router'
 
 
 const gradient = {
@@ -12,7 +13,7 @@ const gradient = {
 class RandomGenre extends React.Component{
     constructor(){
       super()
-      this.state = {}
+      this.state = {redirectToReferrer:false}
 
       this.random_genre = this.random_genre.bind(this)
       this.genre_movies = this.genre_movies.bind(this)
@@ -27,6 +28,10 @@ class RandomGenre extends React.Component{
 
 
       }
+  
+  async ReadMore(id){
+    this.setState({ id,redirectToReferrer: true })
+  }
 
     random_genre(){
       const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
@@ -61,7 +66,7 @@ class RandomGenre extends React.Component{
                               <figcaption style={gradient}>
                                 <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
                                     <div className="d-flex flex-row" >
-                                    <Button onClick={()=> window.open(url1, "_blank")} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
+                                    <Button onClick={()=>   this.ReadMore(movie.id)} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
                                     <Button onClick={() =>  this.chat(movie.original_title)}variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
                                     </div>
                                     <h6>Release Date:{movie.release_date}</h6>
@@ -81,11 +86,10 @@ class RandomGenre extends React.Component{
 
 
     render(){
-
-
-
-      return(
-
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer === true)
+      return   <Redirect to={`/film/${this.state.id}`}  />
+    return(
         <div style={{marginTop:'3em',marginBottom:'8em'}}>
           <h1 className="popular-movies-text">Random genre we think you should explore:{this.state.genre}</h1>
           {this.state.PopularRow}

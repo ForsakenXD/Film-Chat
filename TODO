@@ -1,0 +1,9 @@
+-24/8/2019 TASKLIST ✔ 
+    -Make chat now work in the read more page []
+    -Refactor cast section logic [✔]
+        -add a cast section in my read more page []
+            -add media section in my read more page []
+                -add small image collage at the end of my read me page []
+    -make navbar searchbar functional when on my read me page [✔]
+        -rename #section to #search [✔]
+    -Make view button in daily-stuff-picks functional[✔]

@@ -6,16 +6,33 @@ import Navbar from '../Header'
 import Details from './SubComponents/details'
 
 class Body extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
+        console.log(props)
+        const id = props.props.match.params.id
         this.state = {
+            id,
             data:null
         }
     }
 // 9323-ghost-in-the-shell 
 // 18491
+
+    findGetParameter(parameterName) {
+        var result = null,
+            tmp = [];
+        window.location.search
+            .substr(1)
+            .split("&")
+            .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+            });
+        return result;
+    }
+
     init(){
-        const movie_id = '9323-ghost-in-the-shell'
+        const movie_id = this.state.id
         const api_key = '1adbe5b9d80d1dc5e9cd90c2e0c31900'
         fetch(`http://api.themoviedb.org/3/movie/${movie_id}?api_key=${api_key}&append_to_response=credits,videos,images`)
             .then(res => res.json())
@@ -35,9 +52,9 @@ class Body extends Component{
         return(
             <React.Fragment>
             <div style={{position:'relative',zIndex:'22'}}>
-            <Navbar />
+            <Navbar performSearch={this.props.performSearch}/>
             </div>
-            <Header data={this.state.data} />
+            <Header data={this.state.data}  />
             <Details data={this.state.data} />
             </React.Fragment>   
         )

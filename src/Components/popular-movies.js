@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button} from 'react-bootstrap'
-
+import {  Redirect } from 'react-router'
 
 
 
@@ -14,7 +14,7 @@ const gradient = {
 class PopularMovies extends React.Component{
   constructor(){
     super()
-    this.state={}
+    this.state={ redirectToReferrer: false}
     this.show()
   }
 
@@ -24,6 +24,9 @@ class PopularMovies extends React.Component{
 
 
 
+  }
+  async ReadMore(id){
+    this.setState({ id,redirectToReferrer: true })
   }
 
 
@@ -46,7 +49,7 @@ class PopularMovies extends React.Component{
                               <figcaption style={gradient}>
                                 <h3 className="ih-fade-down ih-delay-sm" style={{fontSize:'25px'}}>{movie.original_title}</h3>
                                     <div className="d-flex flex-row" >
-                                    <Button onClick={()=> window.open(url1, "_blank")} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
+                                    <Button onClick={()=> this.ReadMore(movie.id)} variant="danger sm" style={{marginRight:'1em',backgroundColor:'crimson',borderColor:'crimson'}}>View</Button>
                                     <Button onClick={() =>  this.chat(movie.original_title)} variant="success"   style={{backgroundColor:'black',borderColor:'black'}}>Chat!</Button>
                                     </div>
                                     <h6>Release Date:{movie.release_date}</h6>
@@ -67,6 +70,9 @@ class PopularMovies extends React.Component{
 
 
   render(){
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer === true)
+      return   <Redirect to={`/film/${this.state.id}`}  />
     return(
       <div>
         <h1 className="popular-movies-text">Popular Movies Today</h1>
