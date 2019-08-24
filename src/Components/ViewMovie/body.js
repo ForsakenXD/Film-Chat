@@ -8,7 +8,6 @@ import Details from './SubComponents/details'
 class Body extends Component{
     constructor(props){
         super(props)
-        console.log(props)
         const id = props.props.match.params.id
         this.state = {
             id,

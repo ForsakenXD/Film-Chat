@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import ReactHtmlParser from 'react-html-parser';
 
@@ -32,21 +32,28 @@ function modArr(array){
 };
 
 export default function CastCarousel(props) {
-    console.log(props)
     const [index, setIndex] = useState(0);
+    const [carouselCurrent,changeCurrent] = useState('cast')
     const [direction, setDirection] = useState(null);
-    let cast,crew
+    let current
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
       setDirection(e.direction);
     };
-    cast = modArr(props.cast)
-    crew = modArr(props.crew)
 
+    useEffect(() => {
+        if(props.current !== carouselCurrent){
+            changeCurrent(props.current)
+            setIndex(0)
+        }
+      });
+
+    current = props.current === 'cast' ? modArr(props.cast) : modArr(props.crew)
+    
 
     return(
     <Carousel activeIndex={index} direction={direction} onSelect={handleSelect} width="220" className="cast-item1 " >
-        {cast}
+        {current}
     </Carousel>
         )
     }

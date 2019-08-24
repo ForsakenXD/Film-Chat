@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import CastCarousel from './cast-carousel'
+import Castcrew from './cast-crew'
+import Media from './media'
 import { Carousel } from 'react-bootstrap';
 import {Button} from 'react-bootstrap'
 
 class Details extends Component{
+
+    
     render(){
         let content
         if(this.props.data){
@@ -34,20 +37,20 @@ class Details extends Component{
 
                                 </div>
                                 <div className="cast-item1">
-                                <iframe id="ytplayer" type="text/html" width="100%" height="460" src={`https://www.youtube.com/embed/${this.props.data.videos.results[0].key}?enablejsapi=1&autoplay=1&color=white&loop=1&mute=1`}
-frameBorder="0" align="middle" className="ytube" ></iframe>
-
+                                    <iframe id="ytplayer" type="text/html" width="100%" height="460" src={`https://www.youtube.com/embed/${this.props.data.videos.results[0].key}?enablejsapi=1&autoplay=1&color=white&loop=1&mute=1`}
+                                    frameBorder="0" align="middle" className="ytube" />                                   
                                 </div>
-                                
-                                <div className="cast-item1" >
-                                    <div style={{display:'flex'}}>
-                                    <h2 style={{color:'lightgrey',marginRight:'0.5em'}}>Cast</h2>
-                                    <h2 style={{color:'grey'}}>Crew</h2>
-                                    </div>
-                                    <CastCarousel cast={this.props.data.credits.cast} crew={this.props.data.credits.crew} />
-                                </div>
+                                <Castcrew cast={this.props.data.credits.cast} crew={this.props.data.credits.crew}/>
+                                <Media images={this.props.data.images}/>
                             </div>
+                            
                         </div>
+                        {/* <section className="backdrop-container" style={{top:'0%',zIndex:'-22'}}>
+                    <div className="backdrop" style={{left:'unset'}}>
+                        <div className="backdrop-placeholder" />
+                        <div className="backdropimage" style={{backgroundImage:`url(https://image.tmdb.org/t/p/original/m1LUdsYnFThcrbvRzlpbsFioEQT.jpg)`,backgroundPosition:'center 0px'}}></div>                        <div className="backdropmask" />
+                    </div>
+            </section> */}
                     </section>
         }
         return(
