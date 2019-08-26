@@ -7,6 +7,7 @@ function chat(cls){
     console.log(cls)
     cls.show(true)
     cls.roomName(cls.name)
+    cls.triggerModal()
   }
 
 

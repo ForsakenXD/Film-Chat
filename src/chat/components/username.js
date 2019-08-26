@@ -2,10 +2,11 @@ import React from 'react'
 import {Button,Form,Overlay,Popover} from 'react-bootstrap'
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
+import GetCookie from './CookiesManipulation/cookiesFunctions'
 
 class Username extends React.Component {
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
 
       this.handleClick = ({ target }) => {
         this.setState(s => ({ target, show2: !s.show2 }));
@@ -13,25 +14,27 @@ class Username extends React.Component {
 
       this.state={
         username:'',
-        show:false,
         show2:false,
+        trigger:props.chatTrigger
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
       this.randomUsername = this.randomUsername.bind(this);
+      if(GetCookie('username')){
+        this.props.usernameUpdate(GetCookie('username'))
+        this.props.onSubmit(GetCookie('username'))
+      }
     }
 
 
 
-    handleClose() {
-  this.setState({ show: false });
+  handleClose = () => {
+    this.setState({ trigger: false });
+    this.props.ModalbigClose()
 }
 
-handleShow() {
-  this.setState({ show: true });
-}
+
 
 
 
@@ -46,25 +49,17 @@ handleShow() {
 
     handleSubmit(e){
       e.preventDefault()
-      if(this.state.username !== '')
-        {
-
+      if(this.state.username !== ''){
           console.log(this.state.username)
-                this.props.usernameUpdate(this.state.username)
+          this.props.usernameUpdate(this.state.username)
           this.props.onSubmit(this.state.username)
+          document.cookie = "username=" + encodeURIComponent(this.state.username);
+          this.setState({username:'',trigger:false})
 
-                this.setState({username:''})
-          this.handleClose()
         }
-      else {
-        console.log('you need to enter a username')
-      }
-
     }
 
-    componentDidMount(){
-      this.handleShow()
-    }
+
 
     random(){
       let username = []
@@ -86,10 +81,18 @@ randomUsername(){
 
 }
 
+ UNSAFE_componentWillReceiveProps(nextProps){
+  if(nextProps.chatTrigger !== this.state.trigger)
+     this.setState({ trigger:nextProps.chatTrigger })
+  
+}
+
+
     render () {
+        let modal_trigger =  GetCookie('username') ? false : this.state.trigger 
         return (
           <div >
-          <Rodal className="modall" visible={this.state.show}   onClose={this.handleClick} width={40} height={40} measure={'%'} animation={'zoom'}>
+          <Rodal className="modall" visible={modal_trigger}   onClose={this.handleClose} width={40} height={40} measure={'%'} animation={'zoom'}>
             <Overlay
               show={this.state.show2}
               target={this.state.target}

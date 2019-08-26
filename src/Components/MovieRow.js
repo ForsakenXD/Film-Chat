@@ -23,6 +23,7 @@ class MovieRow extends React.Component {
     chat(name){
       this.props.show(true)
       this.props.roomName(name)
+      this.props.triggerModal()
     }
 
 

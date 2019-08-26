@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "@material-ui/styles": "^4.3.3",
     "@pusher/chatkit": "^0.7.18",
     "@pusher/chatkit-client": "^1.5.0",
     "@pusher/chatkit-server": "^1.1.0",

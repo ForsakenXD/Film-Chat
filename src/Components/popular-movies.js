@@ -18,9 +18,10 @@ class PopularMovies extends React.Component{
     this.show()
   }
 
-  chat(name){
-    this.props.show(true)
-    this.props.roomName(name)
+   chat(name){
+     this.props.show(true)
+     this.props.triggerModal()
+     this.props.roomName(name)
 
 
 

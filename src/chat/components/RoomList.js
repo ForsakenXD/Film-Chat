@@ -2,6 +2,12 @@ import React from 'react'
 
 class RoomList extends React.Component {
 
+    onClick(room){
+        console.log(this.props)
+        this.props.subscribeToRoom(room.id)
+        this.props.roomSet(room.name)
+    }
+
     render () {
         const orderedRooms = [...this.props.rooms].sort((a,b) => a.id - b.id)
         return (
@@ -13,7 +19,7 @@ class RoomList extends React.Component {
                         return (
                             <li key={room.id} className={"room" + active}>
                                 <a
-                                    onClick={() => this.props.subscribeToRoom(room.id)}
+                                    onClick={() => this.onClick(room)}
                                     href="#black">
                                     # {room.name}
                                 </a>

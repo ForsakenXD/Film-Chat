@@ -40,7 +40,6 @@ class NavigationBar extends Component{
 
 
     render(){
-      console.log(this.props)
       const redirectToReferrer = this.state.redirectToReferrer;
       if (redirectToReferrer === true)
         return   <Redirect to={`/`}  />

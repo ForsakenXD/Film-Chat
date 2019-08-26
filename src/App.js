@@ -51,13 +51,13 @@ class App extends Component {
   room = (roomName) => {this.setState({roomName})}
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
   updateText1 = (visible) => {this.setState({ visible })}
-  temp = () => {this.setState({trigger:true})}
+  triggerModal = () => {this.setState({trigger:true})}
   setID = (id) => { this.setState({ movieID:id })}
 
   show(){ 
     this.setState({ visible: true }); 
   }
- hide() {
+ hide = () => {
 
      this.setState({ visible: false});
  }
@@ -77,7 +77,7 @@ class App extends Component {
           //console.log(movie)
           if(movie.poster_path !== null)
           {
-            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} setID={this.setID}/>
+            const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} setID={this.setID} triggerModal={this.triggerModal}/>
             movieRows.push(movieRow)
           }
         })
@@ -146,13 +146,13 @@ image(){
           </div>
           <div className="popular-movies">
           <h1 className="headline1">You can either start chatting or view more information about the movies by hovering your mouse over them.Time to get social!!</h1>
-            <PopularMovies show={this.updateText1}  roomName={this.room}/>
+            <PopularMovies show={this.updateText1}  roomName={this.room} triggerModal={this.triggerModal}/>
             <h1 className="popular-movies-text">Daily staff picks</h1>
-            <Carousel show={this.updateText1} roomName={this.room}/>
-            <RandomGenre show={this.updateText1} roomName={this.room}/>
+            <Carousel show={this.updateText1} roomName={this.room} triggerModal={this.triggerModal}/>
+            <RandomGenre show={this.updateText1} roomName={this.room} triggerModal={this.triggerModal}/>
             
             <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
-            <div className="search-background search__container" id="Search">
+            <div className="search-background search__container" >
                 <div>
                 <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
                 { /*
@@ -165,24 +165,23 @@ image(){
                 {this.state.rows}
             </div>
           </div>
+          <footer id="Search" style={{textAlign:'center'}}>
+            <h2 style={{color:'grey',fontSize:'0.8rem'}}>© 2019 Copyright: KARVOUNAKHS NIKOS</h2>
+          </footer>
 
-
-                    <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
-                        <ChatApp roomName={this.state.roomName} id={'nikos'} handler={this.temp}/>
-                    </Rodal>
+          <Rodal className="modall" visible={this.state.visible} onClose={this.hide.bind(this)} width={80} height={80} measure={'%'} animation={'zoom'}>
+              <ChatApp roomName={this.state.roomName} chatTrigger={this.state.trigger} ModalbigClose={this.hide} roomSet={this.room}/>
+          </Rodal>
 
 
 
         </div>
         }/>
-        <Route  path="/film/:id" render={(props) => <Body props={props} performSearch={this.performSearch} />}/>
+        <Route  path="/film/:id" render={(props) => <Body props={props} performSearch={this.performSearch} show={this.updateText1}  roomName={this.state.roomName} roomSet={this.room}/>}/>
       </Switch>
   );
 }}
 
-
-//      <input className="searchBar" placeholder="Enter Search Term" onChange={this.searchChangeHandler.bind(this)}/>
-//       {this.state.rows}
 
 
 

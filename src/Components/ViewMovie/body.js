@@ -47,6 +47,7 @@ class Body extends Component{
     
 
     render(){
+        console.log(this.props)
         document.documentElement.style.setProperty('--backgroundcolor', 'rgb(20,24,29)');
         return(
             <React.Fragment>
@@ -54,7 +55,7 @@ class Body extends Component{
             <Navbar performSearch={this.props.performSearch}/>
             </div>
             <Header data={this.state.data}  />
-            <Details data={this.state.data} />
+            <Details data={this.state.data} show={this.props.show}  roomName={this.props.roomName} roomSet={this.props.roomSet}/>
             </React.Fragment>   
         )
     }

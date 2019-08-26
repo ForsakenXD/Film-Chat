@@ -66,13 +66,13 @@ class ChatApp extends React.Component {
 
               this.getRooms()
 
-
           })
 
 
           .catch(err => console.log('error on connecting: ', err))
 
         console.log('success')
+
       })
         .catch(error => {
         console.log(error)
@@ -115,6 +115,7 @@ handleShow() {
     }
 
     subscribeToRoom(roomId) {
+        console.log(roomId)
         this.setState({messages:[]})
         this.setState({ messages: [] })
         this.currentUser.subscribeToRoom({
@@ -181,13 +182,14 @@ handleShow() {
 
 
     render() {
-
+        console.log(this.props.chatTrigger)
         return (
             <div className="app">
                 <RoomList
                     roomId={this.state.roomId}
                     subscribeToRoom={this.subscribeToRoom}
-                    rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]} />
+                    rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
+                    roomSet={this.props.roomSet} />
                 <MessageList
                 roomId={this.state.roomId}
                 messages={this.state.messages}
@@ -198,7 +200,7 @@ handleShow() {
                 sendMessage={this.sendMessage}
                 />
               <NewRoomForm createRoom={this.createRoom}/>
-                <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1}/>
+              <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1} chatTrigger={this.props.chatTrigger} ModalbigClose={this.props.ModalbigClose} />
             </div>
         );
     }

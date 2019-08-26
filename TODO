@@ -1,13 +1,23 @@
 -24/8/2019 TASKLIST ✔ 
-    -Make chat now work in the read more page []
+    -FIX CHAT MODAL []
+        -Make chat now work in the read more page [✔]
+        -(FIX)when filmchat logo is pressed in film route then chat opens [✔]
     -Refactor cast section logic [✔]
         -add a cast section in my read more page [✔]
-            -add a loading animation when the user transitions between Cast and crew(UX) []
+            -add a loading animation when the user transitions between Cast and crew(UX) [-]        ---------
                 -when changing between cast and crew reset the carouel index to 0 [✔]
                     -add media section in my read more page [✔]
                         -When user hovers on an image open the image in a new tab [✔]
                             -Add videos sub-section in media section [✔]
-                                -add small image collage at the end of my read me page []
+                                -add small image collage at the end of my read me page [-]             -------
     -make navbar searchbar functional when on my read me page [✔]
         -rename #section to #search [✔]
     -Make view button in daily-stuff-picks functional[✔]
+    -Searching something from the film route doesnt scroll to the right section [✔]
+
+
+-26/8/2019 TASKLIST 
+    -FIX CHAT MODAL [✔]
+        -be able to close the modal and reopen the modal[✔]
+        -implement cookies so that the user doesn't have to type his name twice[✔]
+    -CLEAN UP FUNCTIONS AND PROPS []
