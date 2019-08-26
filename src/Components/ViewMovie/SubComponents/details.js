@@ -16,7 +16,9 @@ class Details extends Component{
 
     chat(name){
         this.setState({ visible:true })
+        this.props.triggerModal()
         this.props.roomSet(name)
+        
     }
     
     componentWillUnmount(){
@@ -64,7 +66,7 @@ class Details extends Component{
                             </div>
                         </div>
                         <Rodal className="modall" visible={this.state.visible} onClose={() => this.setState({ visible: false })} width={80} height={80} measure={'%'} animation={'zoom'}>
-                            <ChatApp roomName={this.props.roomName} handler={this.temp} roomSet={this.props.roomSet} />
+                            <ChatApp ModalbigClose={() => this.setState({ visible:false })} chatTrigger={this.state.visible} roomName={this.props.roomName} handler={this.temp} roomSet={this.props.roomSet} />
                         </Rodal>
                         {/* <section className="backdrop-container" style={{top:'0%',zIndex:'-22'}}>
                     <div className="backdrop" style={{left:'unset'}}>

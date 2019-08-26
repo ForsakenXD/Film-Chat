@@ -32,8 +32,7 @@ class Body extends Component{
 
     init(){
         const movie_id = this.state.id
-        const api_key = '1adbe5b9d80d1dc5e9cd90c2e0c31900'
-        fetch(`http://api.themoviedb.org/3/movie/${movie_id}?api_key=${api_key}&append_to_response=credits,videos,images`)
+        fetch(`http://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_DB}&append_to_response=credits,videos,images`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -45,6 +44,7 @@ class Body extends Component{
         this.init()
     }
     
+    
 
     render(){
         console.log(this.props)
@@ -55,7 +55,7 @@ class Body extends Component{
             <Navbar performSearch={this.props.performSearch}/>
             </div>
             <Header data={this.state.data}  />
-            <Details data={this.state.data} show={this.props.show}  roomName={this.props.roomName} roomSet={this.props.roomSet}/>
+            <Details triggerModal={this.props.triggerModal} data={this.state.data} show={this.props.show}  roomName={this.props.roomName} roomSet={this.props.roomSet}/>
             </React.Fragment>   
         )
     }

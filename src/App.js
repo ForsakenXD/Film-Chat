@@ -65,16 +65,13 @@ class App extends Component {
 
 
   performSearch(searchTerm){
-    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&page=1&include_adult=false&query=" + searchTerm
-
-
+    const urlString = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_MOVIE_DB}&language=en-US&page=1&include_adult=false&query=${searchTerm}` 
     fetch(urlString)
       .then(function(response) {return response.json(); })
       .then(function(data){
         let results = data.results
         var movieRows = []
         results.forEach((movie) => {
-          //console.log(movie)
           if(movie.poster_path !== null)
           {
             const movieRow = <MovieRow key={movie.id} movie={movie} show={this.updateText1} visible={this.state.visible} roomName={this.room} setID={this.setID} triggerModal={this.triggerModal}/>
@@ -99,7 +96,7 @@ searchChangeHandler(event){
 
 // future image and title changing function //
 image(){
-  const urlString = "https://api.themoviedb.org/3/list/111790?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
+  const urlString = `https://api.themoviedb.org/3/list/111790?api_key=${process.env.REACT_APP_MOVIE_DB}&language=en-US`
   fetch(urlString)
     .then(function(response) {return response.json(); })
     .then(function(data){
@@ -137,7 +134,10 @@ image(){
                       >
                     <Button size="lg" id="button1" >search for a specific movie</Button>
                     </Link>
-                <Button size="lg" id="button2" onClick={this.show.bind(this)}>See all chatrooms</Button>
+                <Button size="lg" id="button2" onClick={() => {
+                  this.show()
+                  this.triggerModal()
+                }}>See all chatrooms</Button>
               </Sidebar >
               <p id="movie-title">{this.state.background + '(2003)'}</p>
               <img src="arrow.png" alt="arrow" width="50" />
@@ -177,7 +177,12 @@ image(){
 
         </div>
         }/>
-        <Route  path="/film/:id" render={(props) => <Body props={props} performSearch={this.performSearch} show={this.updateText1}  roomName={this.state.roomName} roomSet={this.room}/>}/>
+        <Route  path="/film/:id" render={(props) => <Body props={props} 
+        performSearch={this.performSearch} 
+        show={this.updateText1}  
+        roomName={this.state.roomName}
+        roomSet={this.room} 
+        triggerModal={this.triggerModal} />}/>
       </Switch>
   );
 }}

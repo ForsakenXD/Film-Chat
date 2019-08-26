@@ -40,7 +40,7 @@ class ChatApp extends React.Component {
 
 
     onUsernameSubmitted(username) {
-      fetch('http://localhost:3001/users',{
+      fetch('/users',{
         method:'POST',
         headers:{
           'Content-type':'application/json'
@@ -52,10 +52,10 @@ class ChatApp extends React.Component {
             currentUsername: username
           })
           const chatManager = new Chatkit.ChatManager({
-              instanceLocator: 'v1:us1:8e5347bd-63e5-479a-b75c-ccb9da6fbf49',
+              instanceLocator: process.env.REACT_APP_INSTANCE_LOCATOR,
               userId:username,
               tokenProvider: new Chatkit.TokenProvider({
-                  url: 'http://localhost:3001/authenticate'
+                  url: '/authenticate'
               })
 
           })
@@ -80,6 +80,7 @@ class ChatApp extends React.Component {
 
     }
 
+
     handleClose() {
   this.setState({ show: false });
 }
@@ -92,10 +93,11 @@ handleShow() {
 
     // when a user clikcs to chat for a certain movie this component lifecycle method gets called
      componentWillReceiveProps(nextProps){
-        this.setState({roomName:nextProps.roomName})
-
-        if( (typeof this.state.currentUsername !== 'undefined' ))
+        if( (typeof this.state.currentUsername !== 'undefined' )){
+          this.setState({ roomName:nextProps.roomName})
           this.createRoom(nextProps.roomName)
+        }
+          
 
     }
 
@@ -182,7 +184,6 @@ handleShow() {
 
 
     render() {
-        console.log(this.props.chatTrigger)
         return (
             <div className="app">
                 <RoomList
@@ -200,7 +201,7 @@ handleShow() {
                 sendMessage={this.sendMessage}
                 />
               <NewRoomForm createRoom={this.createRoom}/>
-              <Username onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1} chatTrigger={this.props.chatTrigger} ModalbigClose={this.props.ModalbigClose} />
+              <Username   createRoom={this.createRoom} roomName={this.props.roomName} onSubmit={this.onUsernameSubmitted} usernameUpdate={this.updateText1} chatTrigger={this.props.chatTrigger} ModalbigClose={this.props.ModalbigClose} />
             </div>
         );
     }

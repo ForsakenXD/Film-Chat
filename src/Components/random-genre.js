@@ -34,7 +34,7 @@ class RandomGenre extends React.Component{
   }
 
     random_genre(){
-      const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US"
+      const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_MOVIE_DB}&language=en-US`
       fetch(url)
         .then(function(response) {return response.json(); })
         .then(function(data) {

@@ -32,7 +32,7 @@ class PopularMovies extends React.Component{
 
 
   show(){
-    const urlString = "https://api.themoviedb.org/3/movie/popular?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900&language=en-US&page=1"
+    const urlString = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_MOVIE_DB}&language=en-US&page=1`
     fetch(urlString)
       .then(function(response) {return response.json(); })
       .then(function(data){

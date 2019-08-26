@@ -16,9 +16,6 @@ class MovieRow extends React.Component {
     async viewMovie(){
       await this.props.setID(this.props.movie_id)
       this.setState({ redirectToReferrer: true})
-      // const url = "https://www.themoviedb.org/movie/" + this.props.movie.id
-      // const win = window.open(url,'_blank')
-      // win.focus();
     }
     chat(name){
       this.props.show(true)
@@ -27,8 +24,6 @@ class MovieRow extends React.Component {
     }
 
 
-//https://api.themoviedb.org/3/movie/245891/credits?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900
-//https://api.themoviedb.org/3/credit/245891?api_key=1adbe5b9d80d1dc5e9cd90c2e0c31900
     render(){
       const redirectToReferrer = this.state.redirectToReferrer;
       if (redirectToReferrer === true)

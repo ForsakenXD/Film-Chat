@@ -6,6 +6,8 @@ const morgan = require('morgan')
 const path = require('path')
 const compression = require('compression')
 const Chatkit = require('@pusher/chatkit-server')
+const dotenv = require('dotenv') 
+dotenv.config()
 
 const normalizePort = port => parseInt(port,10)
 const PORT = normalizePort(process.env.PORT || 3001)
@@ -27,11 +29,12 @@ if (!dev){
   })
 }
 
+
 const server = createServer(app)
 
 const chatkit = new Chatkit.default({
-  instanceLocator: 'v1:us1:8e5347bd-63e5-479a-b75c-ccb9da6fbf49',
-  key: 'e8958230-7833-4a80-b6c4-eff5b44809eb:OziKSqH1quJ/VP+BQ0/CzaE7nW3e2rMOiUlewHiz4nU='
+  instanceLocator: process.env.INSTANCE_LOCATOR,
+  key: process.env.CHATKIT_KEY
 })
 
 app.use(bodyParser.urlencoded({extended:false}))

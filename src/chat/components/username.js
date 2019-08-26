@@ -47,17 +47,24 @@ class Username extends React.Component {
       // this.props.createRoom('x3')
     }
 
-    handleSubmit(e){
-      e.preventDefault()
-      if(this.state.username !== ''){
-          console.log(this.state.username)
-          this.props.usernameUpdate(this.state.username)
-          this.props.onSubmit(this.state.username)
-          document.cookie = "username=" + encodeURIComponent(this.state.username);
-          this.setState({username:'',trigger:false})
+    async handleSubmit(e){
+      await e.preventDefault()
+      const condition = await this.state.username !== ''
+      if(condition){
+          await this.props.usernameUpdate(this.state.username)
+          await this.props.onSubmit(this.state.username)
+          document.cookie = await "username=" + encodeURIComponent(this.state.username) + ';path=/';
+          // await this.wait(3000)
+          await this.setState({username:'',trigger:false})    
+          // await this.props.createRoom(this.props.roomName)
 
         }
     }
+
+     wait(ms) {
+      return new Promise((r => setTimeout(r, ms)));
+    }
+
 
 
 
