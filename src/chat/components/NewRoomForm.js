@@ -1,35 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class NewRoomForm extends React.Component {
+class NewRoomForm extends Component {
     constructor(){
       super()
       this.state={
         roomName:''
       }
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
-
-
     }
-    handleChange(e){
-      this.setState({
-        roomName:e.target.value
-      })
-      // this.props.createRoom('x3')
+    handleChange = e => {
+      this.setState({ roomName:e.target.value })
     }
 
-    handleSubmit(e){
+    handleSubmit = e => {
       e.preventDefault()
       this.props.createRoom(this.state.roomName)
-      this.setState({roomName: ''})
+      this.setState({ roomName: '' })
     }
 
-    render () {
-
+    render() {
         return (
-
             <div className="new-room-form">
-
                 <form onSubmit={this.handleSubmit}>
                     <input
                         value={this.state.roomName}

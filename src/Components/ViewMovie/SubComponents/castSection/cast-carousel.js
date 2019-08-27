@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 
 
 
-function modArr(array){
+const modArr = (array) => {
     let modified_cast = ''
     let temp = 0
     for(let i = 4;i < array.length  ; i = i + 4){
@@ -28,14 +28,13 @@ function modArr(array){
         modified_cast += '</div></Carousel.Item>'
     }
     return ReactHtmlParser(modified_cast)
-    
 };
 
 export default function CastCarousel(props) {
     const [index, setIndex] = useState(0);
     const [carouselCurrent,changeCurrent] = useState('cast')
     const [direction, setDirection] = useState(null);
-    let current
+
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
       setDirection(e.direction);
@@ -46,14 +45,12 @@ export default function CastCarousel(props) {
             changeCurrent(props.current)
             setIndex(0)
         }
-      });
-
-    current = props.current === 'cast' ? modArr(props.cast) : modArr(props.crew)
-    
-
+      },[props,carouselCurrent]);
+      
+    const Current = props.current === 'cast' ? modArr(props.cast) : modArr(props.crew)
     return(
     <Carousel activeIndex={index} direction={direction} onSelect={handleSelect} width="220" className="cast-item1 " >
-        {current}
+        {Current}
     </Carousel>
         )
     }

@@ -1,10 +1,6 @@
 import Carousel from 'react-bootstrap/Carousel'
-import React, {useState} from 'react'
-import {Button} from 'react-bootstrap'
+import React, { useState } from 'react'
 import CarouselItem from './carousel_item'
-
-
-
 
 function ControlledCarousel(props) {
     const [index, setIndex] = useState(0);
@@ -14,15 +10,7 @@ function ControlledCarousel(props) {
       setIndex(selectedIndex);
       setDirection(e.direction);
     };
-    const gradient = {
-        //background:'linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(249,249,255,0) 0%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 77%, rgba(51,255,222,0.3) 94%)'
-        background:'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)',
-        backgroundColor:"transparent"
-        //background: 'linear-gradient(180deg, rgba(255,255,255,0) 37%, rgba(153,0,0,0.5) 100%)'
-      }
 
-    
-  
     return (
       <Carousel activeIndex={index} direction={direction} onSelect={handleSelect} style={{width:'100%'}}>
         <Carousel.Item>
@@ -44,7 +32,7 @@ function ControlledCarousel(props) {
             <CarouselItem triggerModal={props.triggerModal} show={props.show} id={13964} roomName={props.roomName} image={"https://m.media-amazon.com/images/M/MV5BODdlZmM2YTctNDc4Ny00OGE3LWI0YjEtMDViNGVmOWE2YWZmXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"} name={"The Machine Girl"} rating={"6/10"} releaseDate={2008} description={"IT’S PAYBACK TIME!The life of a young, Japanese schoolgirl is destroyed when her family is killed by a Ninja-Yakuza family. Her hand cut off, she replaces it with various machines-of-death, and seeks revenge"}/>
         </div>
 
-        
+    
           <Carousel.Caption>
             <h3 style={{color:'white'}}>Japanese Gore</h3>
             <p>Japanese cult gore that will most defenetly "shake" you up</p>
@@ -60,9 +48,7 @@ function ControlledCarousel(props) {
   
           <Carousel.Caption>
             <h3>Animation</h3>
-            <p>
-              Modern animation masterpieces
-            </p>
+            <p>Modern animation masterpieces</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

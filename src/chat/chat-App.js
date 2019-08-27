@@ -1,16 +1,10 @@
 import React from 'react'
-import Chatkit from '@pusher/chatkit-client'
-
+import Chatkit from '@pusher/chatkit-client' 
 import MessageList from './components/MessageList'
 import SendMessageForm from './components/SendMessageForm'
 import RoomList from './components/RoomList'
 import NewRoomForm from './components/NewRoomForm'
 import Username from './components/username.js'
-
-
-
-
-
 import 'rodal/lib/rodal.css';
 
 class ChatApp extends React.Component {
@@ -22,7 +16,6 @@ class ChatApp extends React.Component {
             messages: [],
             joinableRooms: [],
             joinedRooms: [],
-            state: true,
             show:false,
             usersWhoAreTyping:[]
         }
@@ -35,11 +28,11 @@ class ChatApp extends React.Component {
         this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this)
 
     }
-    updateText1 = (username) => {this.setState({ username })}
+    updateText1 = username => {this.setState({ username })}
 
 
 
-    onUsernameSubmitted(username) {
+    onUsernameSubmitted = username => {
       fetch('/users',{
         method:'POST',
         headers:{
@@ -62,52 +55,37 @@ class ChatApp extends React.Component {
           chatManager.connect()
           .then(currentUser => {
               this.currentUser = currentUser
-
-
               this.getRooms()
-
           })
-
-
           .catch(err => console.log('error on connecting: ', err))
-
         console.log('success')
-
       })
-        .catch(error => {
-        console.log(error)
+        .catch(err => {
+        console.log(err)
       })
 
     }
 
 
-    handleClose() {
-  this.setState({ show: false });
-}
-
-handleShow() {
-  this.setState({ show: true });
-}
+    handleClose = () => { this.setState({ show: false })}
+    handleShow = () => { this.setState({ show: true })}
 
 
 
     // when a user clikcs to chat for a certain movie this component lifecycle method gets called
-     componentWillReceiveProps(nextProps){
+     componentWillReceiveProps =  nextProps => {
         if( (typeof this.state.currentUsername !== 'undefined' )){
           this.setState({ roomName:nextProps.roomName})
           this.createRoom(nextProps.roomName)
         }
-          
-
     }
 
 
 
 
-    getRooms() {
+    getRooms = () => {
         this.currentUser.getJoinableRooms()
         .then(joinableRooms => {
-
             this.setState({
                 joinableRooms,
                 joinedRooms: this.currentUser.rooms
@@ -116,7 +94,7 @@ handleShow() {
         .catch(err => console.log('error on joinableRooms: ', err))
     }
 
-    subscribeToRoom(roomId) {
+    subscribeToRoom = roomId => {
         console.log(roomId)
         this.setState({messages:[]})
         this.setState({ messages: [] })
@@ -132,56 +110,45 @@ handleShow() {
             },
         })
         .then(room => {
-            this.setState({
-                roomId: room.id
-            })
+            this.setState({ roomId: room.id })
             this.getRooms()
         })
         .catch(err => console.log('error on subscribing to room: ', err))
     }
 
-    sendMessage(text) {
+    sendMessage = text => {
         this.currentUser.sendMessage({
             text,
             roomId: this.state.roomId
         })
     }
 
-     createRoom(name){
+     createRoom = name => {
 
             let index = false
             let id = ''
             this.state.joinableRooms.forEach((movie) => {
-            if(name === movie.name)
-              {
+            if(name === movie.name){
               index = true
               id = movie.id
               }
           })
           this.state.joinedRooms.forEach((movie) => {
-          if(name === movie.name)
-            {
+          if(name === movie.name){
             index = true
             id = movie.id
             }
         })
-          if(typeof name !== 'undefined')
-          {
-          if(!index)
-            {//ensures there isn't a chatroom for the same movie
-            this.currentUser.createRoom({
-              name
-            })
-            .then(room => this.subscribeToRoom(room.id))
-            .catch(err => console.log('error with create room'))
+          if(typeof name !== 'undefined'){
+            if(!index){  //ensures there isn't a chatroom for the same movie
+              this.currentUser.createRoom({ name })
+              .then(room => this.subscribeToRoom(room.id))
+              .catch(err => console.log('error with create room ',err.message))
+              }
+            else     
+              this.subscribeToRoom(id)
             }
-          else      //if there is just join it
-            this.subscribeToRoom(id)
-          }
         }
-
-
-
 
     render() {
         return (

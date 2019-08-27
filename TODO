@@ -21,13 +21,52 @@
         -be able to close the modal and reopen the modal[✔]
         -implement cookies so that the user doesn't have to type his name twice[✔]
         -when user enters username by clickin the chat now from a specific movie,quickly select that movie [✔]
-        -find another way to do the above since wait(ms) is incosistent and will flank in slower connections []
+        -find another way to do the above since wait(ms) is incosistent and will flank in slower connections [x]
     -Make manual carousel items correspond to the actual moviedb titles[✔]
     -put all values that contain credentials in .env.local file(FRONT-END)[✔]
     -put all values that contain credentials in .env file(BACK-END)[✔]
     -Replace localhost routes with backend proxy in ChatApp file[✔]
-    -put .env,.env.local in a gitignore file []
-    -Refactor Frontend[]
-    -Refactor Backend[]
+    -put .env,.env.local in a gitignore file [✔]
+    --------------GIT COMMIT 12:38PM-------------
+    -Refactor Frontend[✔]
+        - App.js[✔]
+        - Components
+          -Root
+            -random-genre.js[✔]
+            -popular-movies.js[✔]
+            -MovieRow.js[✔]
+            -Navbar.js[✔]
+            -carousel.js[✔]
+            -carousel_item.js[✔]
+         -ViewMovie
+            -Root
+              -body.js[✔]
+            -SubComponents 
+              -header.js[✔]
+              -details.js[✔]
+              -mediaSection 
+                  media.js[✔]
+                  mediaContent.js[✔]
+                  mediaPhotos.js[✔]
+                  mediaVideos.js[✔]      
+              -castSection
+                   cast-carousel.js[✔]
+                   cast-crew.js[✔]     
+           -chat 
+             -Root 
+                -chat-app.js[✔]
+                -/Components
+                    -Message.js[✔]
+                    -MessageList.js[✔]
+                    -NewRoomForm.js[✔]
+                    -RoomList.js[✔]
+                    -SendMessageForm.js[✔]
+                    -username.js[✔]
+    -Refactor Backend[✔]
+    -Fix React warnings[✔]
+    --
+    -Make / Route mobile responsive []
+    -Make navbar mobile responsive []
+    -Clean CSS files []
     -Change chatkit api_keys[]
     -Change moviedb api_keys[]

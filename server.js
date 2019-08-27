@@ -50,7 +50,7 @@ app.post('/users', (req, res) => {
   chatkit
     .createUser({
       id: username,
-      name: username,
+      name: username
     })
     .then(() => {
       res.sendStatus(201);
@@ -81,6 +81,6 @@ server.listen(PORT,err => {
     console.log(err)
   }
   else{
-    console.log(`Running on port ${PORT}`)
+    console.log(`SERVER STARTED`)
   }
 })

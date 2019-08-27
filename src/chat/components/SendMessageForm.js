@@ -1,29 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class SendMessageForm extends React.Component {
+class SendMessageForm extends Component {
 
     constructor() {
         super()
         this.state = {
             message: ''
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange(e) {
-        this.setState({
-            message: e.target.value
-        })
-
+    handleChange = e => {
+        this.setState({ message: e.target.value })
     }
 
-    handleSubmit(e) {
+    handleSubmit = e => {
         e.preventDefault()
         this.props.sendMessage(this.state.message)
-        this.setState({
-            message: ''
-        })
+        this.setState({ message: '' })
     }
 
     render() {

@@ -1,10 +1,10 @@
-import React from 'react'
-import {Button,Form,Overlay,Popover} from 'react-bootstrap'
+import React, { Component } from 'react'
+import { Button, Form, Overlay, Popover } from 'react-bootstrap'
 import 'rodal/lib/rodal.css';
 import Rodal from 'rodal';
-import GetCookie from './CookiesManipulation/cookiesFunctions'
+import GetCookie from './CookiesManipulation/getCookie'
 
-class Username extends React.Component {
+class Username extends Component {
     constructor(props){
       super(props)
 
@@ -17,10 +17,6 @@ class Username extends React.Component {
         show2:false,
         trigger:props.chatTrigger
       }
-      this.handleChange = this.handleChange.bind(this)
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleClose = this.handleClose.bind(this);
-      this.randomUsername = this.randomUsername.bind(this);
       if(GetCookie('username')){
         this.props.usernameUpdate(GetCookie('username'))
         this.props.onSubmit(GetCookie('username'))
@@ -29,46 +25,26 @@ class Username extends React.Component {
 
 
 
-  handleClose = () => {
-    this.setState({ trigger: false });
-    this.props.ModalbigClose()
-}
-
-
-
-
-
-
-
-    handleChange(e){
-      this.setState({
-        username:e.target.value
-      })
-      // this.props.createRoom('x3')
+    handleClose = () => {
+      this.setState({ trigger: false });
+      this.props.ModalbigClose()
     }
 
-    async handleSubmit(e){
-      await e.preventDefault()
-      const condition = await this.state.username !== ''
-      if(condition){
-          await this.props.usernameUpdate(this.state.username)
-          await this.props.onSubmit(this.state.username)
-          document.cookie = await "username=" + encodeURIComponent(this.state.username) + ';path=/';
-          // await this.wait(3000)
-          await this.setState({username:'',trigger:false})    
-          // await this.props.createRoom(this.props.roomName)
+    handleChange = e => {
+      this.setState({ username:e.target.value })
+    }
 
+     handleSubmit =  e => {
+      e.preventDefault()
+      if(this.state.username !== ''){
+           this.props.usernameUpdate(this.state.username)
+           this.props.onSubmit(this.state.username)
+           document.cookie =  "username=" + encodeURIComponent(this.state.username) + ';path=/';
+           this.setState({username:'',trigger:false})    
         }
     }
 
-     wait(ms) {
-      return new Promise((r => setTimeout(r, ms)));
-    }
-
-
-
-
-    random(){
+    random = () => {
       let username = []
       for(let i=0; i < 12; i++)
           {
@@ -79,55 +55,47 @@ class Username extends React.Component {
             username.push(rand_num)
           }
       return username.join("")
-
-
     }
 
-randomUsername(){
-  this.setState({username:this.random()})
+    randomUsername = () => { this.setState({username:this.random()}) }
 
-}
-
- UNSAFE_componentWillReceiveProps(nextProps){
-  if(nextProps.chatTrigger !== this.state.trigger)
-     this.setState({ trigger:nextProps.chatTrigger })
-  
-}
+    UNSAFE_componentWillReceiveProps = (nextProps) => {
+      if(nextProps.chatTrigger !== this.state.trigger)
+        this.setState({ trigger:nextProps.chatTrigger })
+    }
 
 
     render () {
         let modal_trigger =  GetCookie('username') ? false : this.state.trigger 
         return (
           <div >
-          <Rodal className="modall" visible={modal_trigger}   onClose={this.handleClose} width={40} height={40} measure={'%'} animation={'zoom'}>
-            <Overlay
-              show={this.state.show2}
-              target={this.state.target}
-              placement="top"
-              container={this}
-              containerPadding={20}
-            >
-              <Popover id="popover-contained" title="Hey There">
-                <strong>Unfortunatly you have to enter a username before closing this window</strong>
-              </Popover>
-            </Overlay>
-          <Form onSubmit={this.handleSubmit} style={{width: '80%'}}>
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter username" onChange={this.handleChange} value={this.state.username}/>
-              <Form.Text className="text-muted" >
-                keep it simple :)
-              </Form.Text>
-          </Form>
-          <Button variant="primary" type="submit" className="username-buttons" onClick={this.handleSubmit} style={{marginRight:'0.5em'}}>
-            Submit
-          </Button>
-          <Button variant="info" type="submit"  className="username-buttons" onClick={this.randomUsername}>
-            Random
-          </Button>
-        </Rodal>
-
+            <Rodal className="modall" visible={modal_trigger}   onClose={this.handleClose} width={40} height={40} measure={'%'} animation={'zoom'}>
+              <Overlay
+                show={this.state.show2}
+                target={this.state.target}
+                placement="top"
+                container={this}
+                containerPadding={20}
+              >
+                <Popover id="popover-contained" title="Hey There">
+                  <strong>Unfortunatly you have to enter a username before closing this window</strong>
+                </Popover>
+              </Overlay>
+            <Form onSubmit={this.handleSubmit} style={{width: '80%'}}>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter username" onChange={this.handleChange} value={this.state.username}/>
+                <Form.Text className="text-muted" >
+                  keep it simple :)
+                </Form.Text>
+            </Form>
+            <Button variant="primary" type="submit" className="username-buttons" onClick={this.handleSubmit} style={{marginRight:'0.5em'}}>
+              Submit
+            </Button>
+            <Button variant="info" type="submit"  className="username-buttons" onClick={this.randomUsername}>
+              Random
+            </Button>
+          </Rodal>
         </div>
-
         )
     }
 }

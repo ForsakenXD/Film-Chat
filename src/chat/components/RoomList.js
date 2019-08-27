@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class RoomList extends React.Component {
+class RoomList extends Component {
 
-    onClick(room){
-        console.log(this.props)
+    onClick = room => {
         this.props.subscribeToRoom(room.id)
         this.props.roomSet(room.name)
     }
@@ -18,11 +17,7 @@ class RoomList extends React.Component {
                         const active = this.props.roomId === room.id ? "active" : "";
                         return (
                             <li key={room.id} className={"room" + active}>
-                                <a
-                                    onClick={() => this.onClick(room)}
-                                    href="#black">
-                                    # {room.name}
-                                </a>
+                                <a onClick={() => this.onClick(room)} href="#black">#{room.name}</a>
                             </li>
                         )
                     })}
