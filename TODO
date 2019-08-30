@@ -64,9 +64,39 @@
                     -username.js[✔]
     -Refactor Backend[✔]
     -Fix React warnings[✔]
-    --
+    --GIT COMMIT AUG 27 12:43am--
+
+
+27-8-2019 TASKLIST
+    -Make / Route mobile responsive [X]
+    -Make navbar mobile responsive [X]
+    -Clean CSS files [X]
+    -Change chatkit api_keys [X]
+    -Change moviedb api_keys [X]
+    -Learn,Implement docker [X]
+        -Learn how to use Docker w/gitlab[X]
+
+
+28-8-2019 TASKLIST
     -Make / Route mobile responsive []
     -Make navbar mobile responsive []
     -Clean CSS files []
-    -Change chatkit api_keys[]
-    -Change moviedb api_keys[]
+    -Change chatkit api_keys []
+    -Change moviedb api_keys []
+    -Learn,Implement docker []
+        -Learn how to use Docker w/gitlab[]
+    -Move Client and Server files into seperate folders[✔]
+
+
+
+    30-8-2019 TASKLIST
+    -Make / Route mobile responsive [✔]
+    -Make navbar mobile responsive [✔]
+    -Clean CSS files [✔]
+    -Implement light-dark theme in chat [✔]
+    -if movie is not well known and doesn't have a cast-crew/media (display:none) the specific sections [✔]
+    -Change chatkit api_keys []
+    -Change moviedb api_keys []
+    -Learn,Implement docker []
+        -Learn how to use Docker w/gitlab[]
+        

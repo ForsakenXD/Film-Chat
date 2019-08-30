@@ -1,0 +1,285 @@
+/*CHAT STYLING  */
+:root{
+    --fontColor1:lightgrey;
+    --fontColor2:lightgrey;
+    --colorHover:crimson;
+    --background-color1:rgb(20,24,29);
+    --scrollbar-thumb1:crimson;
+    --scrollbar-body:rgba(0,0,0,0.2);
+}
+
+.app {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows:  30px 1fr 1fr 1fr 1fr 1fr 60px;
+    grid-template-areas:
+        "z z z z z z"
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "r m m m m m"
+        "n f f f f f";
+    background:var(--background-color1);
+    padding-top:1.5em;
+    padding-right:0.3em;
+    padding-left:0.3em;
+}
+
+.new-room-form {
+    grid-area: n;
+}
+
+.rooms-list {
+    grid-area: r;
+}
+
+.message-list {
+    grid-area: m;
+}
+
+.send-message-form {
+    grid-area: f;
+}
+
+/* REST OF CSS */
+.rooms-list {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: var(--background-color1);
+    overflow: scroll;
+    height: 100%;
+    color:var(--fontColor2);
+}
+
+.rooms-list > ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: scoll;
+}
+
+.rooms-list li {
+    margin: 10px 0;
+}
+
+.rooms-list > h3 {
+    margin: 5px 0;
+    color: rgb(20,24,29);
+}
+
+.rooms-list .room a {
+    color: var(--fontColor1);
+    font-weight: 600;
+    text-decoration: none;
+    transition:0.3s;
+ }
+
+.rooms-list .room.active a {
+    color: black;
+}
+
+.room a:hover{
+
+  color:var(--colorHover);
+}
+
+a{
+    color:var(--colorHover);
+    font-weight:bold;
+}
+
+
+
+.new-room-form {
+    padding: 0 5px;
+    background: var(--background-color1);
+    color: crimson;
+}
+
+.new-room-form form {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-room-form input {
+    width: 135px;
+    background: var(--secondary-color);
+    color:var(--fontColor2);
+}
+
+.new-room-form button {
+    background: var(--secondary-color);
+    color: var(--main-text-color);
+    border: 0;
+}
+
+.new-room-form input::placeholder {
+    color: var(--main-text-color);
+    font-weight: 200;
+}
+
+.new-room-form input:focus {
+    outline-width: 0;
+}
+
+.new-room-form input {
+    border: 0;
+}
+
+.new-room-form button {
+    border: 0;
+}
+
+.message {
+    margin: 25px 0;
+}
+
+.message .message-username {
+    font-size: 1rem;
+    color: var(--scrollbar-thumb1);
+    opacity: 0.9;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+.message .message-text {
+    background: var(--main-color);
+    color: var(--secondary-color);
+    display: inline;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.message-list {
+    box-sizing: border-box;
+    padding-left: 6px;
+    width: 100%;
+    height: 100%;
+    background: var(--background-color1);
+    color:var(--fontColor2);
+}
+
+.message-list .join-room {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 34px;
+    font-weight: 300;
+}
+
+.send-message-form {
+    background: var(--background-color1);
+    display: flex;
+    z-index: 22;
+}
+
+.send-message-form input {
+    width: 100%;
+    padding: 15px 10px;
+    margin: 0;
+    border-style: none;
+    background: var(--send-message-form);
+    font-weight: 200;
+    color:var(--fontColor2);
+
+}
+
+.send-message-form input:focus {
+    outline-width: 0;
+}
+
+.send-message-form input::placeholder {
+    color: var(--main-text-color);
+}
+
+.help-text {
+    position: absolute;
+    top: 10px;
+}
+
+.center{
+    line-height: 500px;
+    height: 100%;  
+    text-align: center;
+  }
+
+.app > ::-webkit-scrollbar,.message-list > ::-webkit-scrollbar{
+    background: var(--scrollbar-body);
+    width:0.8em;
+
+}
+
+.app > ::-webkit-scrollbar-thumb,.message-list > ::-webkit-scrollbar-thumb{
+    background: var(--scrollbar-thumb1); 
+
+}
+
+.app > ::-webkit-scrollbar-corner,.message-list > ::-webkit-scrollbar-corner{
+    background:var(--background-color1);
+
+}
+
+.rodal-dialog{
+    padding:0!important;
+}
+
+
+/* Switch */
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: crimson;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(20,24,29);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--scrollbar-thumb1);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--scrollbar-thumb1);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
