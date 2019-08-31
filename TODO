@@ -90,6 +90,7 @@
 
 
     30-8-2019 TASKLIST
+    -Move Client and Server files into seperate folders[✔]
     -Make / Route mobile responsive [✔]
     -Make navbar mobile responsive [✔]
     -Clean CSS files [✔]

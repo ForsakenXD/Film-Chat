@@ -1,34 +1,21 @@
-version: '2'
+version: '3'
 services:
-  server:
-    build:
-      context: ./server/
-    command: /usr/app/node_modules/.bin/nodemon src/index.js
-    volumes:
-      - ./server/:/usr/app
-      - /usr/app/node_modules
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
+  ####################
+  # NODE
+  ####################
+  node:
+    image         : node:carbon
+    container_name: Node
+    build         : ./node
+  #####################
+  # NGINX
+  #####################
+  nginx:
+    image         : nginx:stable
+    container_name: Nginx
+    build         : ./nginx
+    links         :
+      - node
     ports:
-      - "3001:3001"
-    env_file: ./server/.env # TODO - uncomment this to auto-load your .env file!
-    environment:
-      - NODE_ENV=development
-      - CHOKIDAR_USEPOLLING=true
-
-
-  client:
-    build:
-      context: ./client/
-    command: npm start
-    volumes:
-      - ./client/:/usr/app
-      - /usr/app/node_modules
-      - "/etc/timezone:/etc/timezone:ro"
-      - "/etc/localtime:/etc/localtime:ro"
-    depends_on:
-      - server
-    ports:
-      - "3000:3000"
-    environment:
-      - TZ=Europe/Athens
+      - "80:80"
+      - "443:443"
