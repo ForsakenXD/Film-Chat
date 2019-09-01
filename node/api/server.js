@@ -10,7 +10,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const normalizePort = port => parseInt(port,10)
-const PORT = normalizePort(process.env.PORT || 3001)
+let PORT = normalizePort(process.env.PORT || 3001)
 
 
 
@@ -23,10 +23,10 @@ if (prod){
   app.use(compression())
   app.use(morgan('csommon'))
   PORT = 8080
-  app.use(express.static(path.join(__dirname,'../../frontend/build')))
+  app.use(express.static(path.join(__dirname,'../frontend/build')))
 
   app.get('*',(req,res) => {
-    res.sendFile(path.join(__dirname,'../../frontend/build','index.html'))
+    res.sendFile(path.join(__dirname,'../frontend/build','index.html'))
   })
 }
 
