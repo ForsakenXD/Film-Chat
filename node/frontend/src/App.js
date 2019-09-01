@@ -122,7 +122,7 @@ class App extends Component {
                 </div>
               </header>
               <section className="popular-movies">
-                <h1 className="headline1">You can either start chatting or view information about the movies by hovering your mouse over them.Time to get social!!</h1>
+                <h1 className="headline1">You can either start chatting or view information about the movies by hovering your mouse over them.Time to get social!</h1>
                   <h1 className="popular-movies-text">Popular Movies Today</h1>
                   <PopularMovies show={this.show}  roomName={this.setRoom} triggerModal={this.triggerModal}/>
                   <h1 className="popular-movies-text">Daily staff picks</h1>
