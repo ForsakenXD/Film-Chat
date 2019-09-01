@@ -128,7 +128,7 @@ class App extends Component {
                   <h1 className="popular-movies-text">Daily staff picks</h1>
                   <Carousel show={this.show} roomName={this.setRoom} triggerModal={this.triggerModal}/>
                   <RandomGenre show={this.show} roomName={this.setRoom} triggerModal={this.triggerModal}/>                
-                  <h1 className="headline1">Search for your favourite movie and chat with others down bellow!</h1>
+                  <h1 className="headline1">Search for your favourite movie and chat with others down bellow!!</h1>
                   <div className="search-background search__container" >
                       <div>
                         <input className="searchBar search__input" placeholder="Search for a movie!" onChange={this.searchChangeHandler.bind(this)}/>
