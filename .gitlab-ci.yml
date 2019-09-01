@@ -1,28 +1,24 @@
-image: docker 
-
-services:
-  - docker:dind
- 
- stages:
-  - test 
+--- 
+image: docker
+services: 
+  - "docker:dind"
+stages: 
+  - test
   - deploy
-  
- test:
-   stage: test
-   only:
+step-deploy-prod: 
+  enviroment: production
+  only: 
+    - production
+  script: 
+    - "sudo apt-get install -y python-pip"
+    - "pip install docker-compose"
+    - "docker-compose up -d --build"
+  stage: deploy
+  when: manual
+test: 
+  only: 
     - develop
     - production
-   script:
-    - echo run tests in this section
-    
-    
-  step-deploy-prod:
-    stage: deploy
-    only:
-      - production
-    script:
-      - sudo apt-get install -y python-pip
-      - pip install docker-compose
-      - docker-compose up -d --build
-    enviroment: production
-    when: manual
+  script: 
+    - "echo run tests in this section"
+  stage: test
