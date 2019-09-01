@@ -32,9 +32,9 @@ class ThemeButton extends Component{
     render(){
         return(
             <div style={{gridArea:'z',gridColumn:'1',marginBottom:'2em'}}>
-                <label class="switch" >
+                <label className="switch" >
                     <input type="checkbox" onClick={() => this.onClick()}/>
-                    <span class="slider"></span>
+                    <span className="slider"></span>
                 </label>
             </div>
             

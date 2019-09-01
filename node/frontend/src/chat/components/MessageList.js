@@ -1,7 +1,6 @@
 import React,{ Component } from 'react'
 import ReactDOM from 'react-dom'
 import Message from './Message'
-import NameDisplay from './nameDisplay'
 
 class MessageList extends Component {
 
@@ -47,7 +46,6 @@ class MessageList extends Component {
       }
         return (
             <div className="message-list">
-                <NameDisplay username={this.props.username} />
                 <div style={{overflow:'scroll',height:'100%'}}>
                   {this.renderUserMessage()}
                 </div>

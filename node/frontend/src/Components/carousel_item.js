@@ -4,7 +4,6 @@ import {  Redirect } from 'react-router'
 import { Button } from 'react-bootstrap'
 
 const chat = (cls) => {
-    console.log(cls)
     cls.show()
     cls.roomName(cls.name)
     cls.triggerModal()

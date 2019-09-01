@@ -155,7 +155,7 @@ class ChatApp extends React.Component {
     render() {
         return (
             <div className="app">
-              <Header />
+              <Header username={this.state.currentUsername} />
               <RoomList
                     roomId={this.state.roomId}
                     subscribeToRoom={this.subscribeToRoom}

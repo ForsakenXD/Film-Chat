@@ -23,8 +23,8 @@
         "n f f f f f";
     background:var(--background-color1);
     padding-top:1.5em;
-    padding-right:0.3em;
-    padding-left:0.3em;
+    padding-right:1em;
+    padding-left:1em;
 }
 
 .new-room-form {
@@ -283,3 +283,7 @@ a{
     transform: translateX(26px);
   }
   
+
+ .username-modal .rodal-dialog{
+     padding:1em!important;
+ }

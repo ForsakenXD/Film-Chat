@@ -8,7 +8,7 @@ import Details from './SubComponents/details'
 class Body extends Component{
     constructor(props){
         super(props)
-        const id = props.props.match.params.id
+        const { id } = props.props.match.params
         this.state = {
             id,
             data:null
@@ -22,7 +22,7 @@ class Body extends Component{
         window.location.search
             .substr(1)
             .split("&")
-            .forEach(function (item) {
+            .forEach((item) =>{
             tmp = item.split("=");
             if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
             });
@@ -30,10 +30,13 @@ class Body extends Component{
     }
 
     init = () => {
-        const movie_id = this.state.id
-        fetch(`http://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_MOVIE_DB}&append_to_response=credits,videos,images`)
+        const { id } = this.state
+        fetch(`http://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_DB}&append_to_response=credits,videos,images,recommendations`)
             .then( res => res.json())
-            .then( data => this.setState({ data }))
+            .then( data => {
+                this.setState({ data })
+                console.log(data)
+            })
     }
 
     componentWillMount = () => {

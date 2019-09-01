@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Castcrew from './castSection/cast-crew'
 import Media from './mediaSection/media'
+import Recommendations from './recommendationsSection/recommendationsBody'
 import { Button } from 'react-bootstrap'
 import ChatApp from '../../../chat/chat-App'
 import Rodal from 'rodal';
@@ -62,6 +63,7 @@ class Details extends Component{
                                 <React.Fragment>
                                     <Castcrew cast={this.props.data.credits.cast} crew={this.props.data.credits.crew}/>
                                     <Media images={this.props.data.images} videos={this.props.data.videos.results}/>
+                                    <Recommendations recommendations={this.props.data.recommendations.results}/>
                                 </React.Fragment> 
                             </div>
                         </div>

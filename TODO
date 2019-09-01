@@ -98,6 +98,12 @@
     -if movie is not well known and doesn't have a cast-crew/media (display:none) the specific sections [✔]
     -Change chatkit api_keys []
     -Change moviedb api_keys []
-    -Learn,Implement docker []
+    -Learn,Implement docker [✔]
         -Learn how to use Docker w/gitlab[]
+
+
+    31-8-2019 TASKLIST
+    -Implement gitlab runners []
+    -tweak styling in the first modal [✔]
+    -Make director page
         

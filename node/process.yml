@@ -7,7 +7,7 @@ apps:
     env      :
       NODE_ENV: production
   - name     : 'api'
-    script   : 'src/server.js'
+    script   : 'server.js'
     cwd      : '/srv/www/api'
     exec_mode: 'cluster'
     instance : 'max'

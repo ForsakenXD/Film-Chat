@@ -68,20 +68,21 @@ class Username extends Component {
     render () {
         let modal_trigger =  GetCookie('username') ? false : this.state.trigger 
         return (
-          <div >
-            <Rodal className="modall" visible={modal_trigger}   onClose={this.handleClose} width={40} height={40} measure={'%'} animation={'zoom'}>
+          <div className="username-modal">
+            <Rodal classname="modal" style={{padding:'1em'}}  visible={modal_trigger}   onClose={this.handleClose} width={40} height={40} measure={'%'} animation={'zoom'}>
               <Overlay
                 show={this.state.show2}
                 target={this.state.target}
                 placement="top"
                 container={this}
-                containerPadding={20}
+                containerPadding={90}
+                className="modal"
               >
                 <Popover id="popover-contained" title="Hey There">
                   <strong>Unfortunatly you have to enter a username before closing this window</strong>
                 </Popover>
               </Overlay>
-            <Form onSubmit={this.handleSubmit} style={{width: '80%'}}>
+            <Form onSubmit={this.handleSubmit} style={{width: '80%'}} classname="modal">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter username" onChange={this.handleChange} value={this.state.username}/>
                 <Form.Text className="text-muted" >
